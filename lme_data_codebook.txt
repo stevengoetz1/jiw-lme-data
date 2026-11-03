@@ -1,0 +1,35 @@
+CODEBOOK - lme_deals_clean.csv (one row per exchange / LME deal; 310 rows)
+deal_id            row id
+deal_set           LME (RR 89) = Roe-Rotaru coercive LME; Pro rata exchange (S&P) = other U.S. distressed exchange; DE by an RR company, other date (review) = set aside
+company, sp_name   issuer; S&P's printed name where the deal is in S&P's tables
+deal_date, year    deal date (RR appendix) or S&P default date
+industry           harmonized S&P industry (sp_industry_raw = as printed); blank for RR deals not in S&P tables
+form_detail        RR deal type (Uptier/Dropdown/Double-Dip) or 'S&P distressed exchange'
+ownership_rr       RR ownership (PE/Public/...) for the 89 deals
+cause_code         A1 demand shock, A2 financial shock, B1 secular decline, B2 firm-specific decline, B3 legal/regulatory, C mixed
+cause_group        A / B / C; shock, structural, mixed = 0/1 dummies
+code_confidence    High/Med/Low/GUESS; sourced = 1 if a quotable agency source exists
+ebitda_trend       agency-described pre-deal EBITDA trend
+bk_date            first Chapter 11/7/15 filing after the deal, on or before 2026-01-14 cutoff
+fail_date          first failure = earlier of bk_date and a later out-of-court default (another exchange, missed payment, SD amendment)
+outcome_source     RR appendix (dockets) for LME rows; S&P later rows + web check for pro rata rows
+excluded, note     1 = excluded (non-U.S. domicile, or S&P row that was actually a Chapter 11); reason in note
+country            S&P country of domicile
+rating_1y_prior, rating_3y_prior, rating_1y_notch   S&P rating 1 and 3 years before default; notch 0=AAA ... 16=CCC+ ... 20=C
+coercion_flag      1 = pro rata row whose agency text mentions priming/uptier/drop-down/holdout language (verify)
+first_for_issuer   1 = first exchange by that issuer among pro rata rows
+in_analysis        1 = in the analytic sample (89 RR LMEs + 188 pro rata = 277); review rows and excluded rows = 0
+lme, pro_rata, review_row   set dummies
+elig_hy            1 if deal_date + h years <= 2026-01-14 (use as the denominator for h-year rates)
+bk_hy, fail_hy     1 if bankruptcy / any failure within 365*h days of the deal (only meaningful where elig_hy = 1)
+days_to_fail, days_to_bk, ever_bk, ever_fail   raw outcome timing
+
+CODEBOOK - lme_terms_clean.csv (one row per S&P-recorded exchange, 242 rows: 188 pro rata + 54 LME; join on company + deal_date)
+*_text             fields as coded from the S&P/Moody's default release; evidence = verbatim quote; sources = URLs
+negotiated         1 = not an open-market repurchase (lender-response analysis uses negotiated == 1)
+haircut_any ... non_pro_rata_terms   0/1 flags derived from the text fields; blank = not stated in the release
+control_index (0-5), ownership_index (0-3), runway_index (0-4)   composite counts; see methods note
+relief_type        balance-sheet fix / runway only / other
+elig_2y, fail_2y, bk_2y   two-year outcome fields copied from the deals file
+
+Suggested first cuts: among in_analysis==1 & pro_rata==1 & elig_2y==1, tabulate fail_2y by cause_group; compare to lme==1.
