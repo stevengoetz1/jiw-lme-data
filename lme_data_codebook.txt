@@ -46,4 +46,6 @@ codebook: gpt-4o-mini (30 runs/deal), gpt-4.1-mini (30), gpt-4o (10), temperatur
   llm_modal       = group with the highest pooled share
   llm_maxp        = that share (>= 0.8 for 74% of deals)
   cause_code / cause_group = the dataset's (coder #1) code, for comparison
+  *_gpt4omini_masked = same model, 30 runs, with the company name scrubbed from the prompt and quotes and the
+                       date rounded to the year (name-leakage check; 91% of modal labels unchanged)
 Full per-run output with one-sentence rationales: llm_codes.csv (download from the Colab Files pane).
