@@ -33,3 +33,17 @@ relief_type        balance-sheet fix / runway only / other
 elig_2y, fail_2y, bk_2y   two-year outcome fields copied from the deals file
 
 Suggested first cuts: among in_analysis==1 & pro_rata==1 & elig_2y==1, tabulate fail_2y by cause_group; compare to lme==1.
+
+============================================================
+llm_recoding_counts.csv  (added 2026-11-05)
+============================================================
+One row per analysis deal (275 of 277; two US Renal Care rows had no agency text).
+Three LLM "coders" re-coded cause of distress from coding_inputs.csv (agency quotes, EBITDA
+trend, secondary factors; blind to the existing code, deal form and outcome) using the Appendix A
+codebook: gpt-4o-mini (30 runs/deal), gpt-4.1-mini (30), gpt-4o (10), temperature 1.
+  A_<model>, B_<model>, C_<model>  = number of runs landing on each group
+  p_A, p_B, p_C   = pooled share of all 70 runs
+  llm_modal       = group with the highest pooled share
+  llm_maxp        = that share (>= 0.8 for 74% of deals)
+  cause_code / cause_group = the dataset's (coder #1) code, for comparison
+Full per-run output with one-sentence rationales: llm_codes.csv (download from the Colab Files pane).
