@@ -94,24 +94,59 @@ This paper fills that gap in two parts. The first applies the financial-versus-e
 % ---------------------------------------------------------------------
 
 \subsection{Sample construction}
-[TODO: paste from the methods note. 548 U.S. S\&P defaults 2018--2025 $\rightarrow$ 263 distressed exchanges after region and transaction-type screens $\rightarrow$ 188 pro rata exchanges not matched to a Roe \& Rotaru deal; plus the 89 Roe \& Rotaru LMEs; 277 deals in the analysis sample. Note the confidential-rating gap and the 35 RR deals S\&P does not list.]
+
+The analysis sample pools two sets of U.S.\ distressed exchanges completed between 2014 and 2025.
+
+\paragraph{Coercive LMEs.} The first set is the 89 non-pro rata liability management exercises hand-collected by \citet{roerotaru2026} from Octus, 9fin, Debtwire and CreditSights. Their definition---a transaction that requires only a lender majority and leaves non-participating creditors with a worse claim---is adopted as the sample boundary, and their deal list, dates and post-deal outcome coding are used as given.
+
+\paragraph{Pro rata exchanges.} The second set is drawn from S\&P Global Ratings' \emph{Annual U.S.\ Corporate Default and Rating Transition Study} for 2018 through 2025, which lists every rated issuer that defaulted in the year with the date and the reason for default. S\&P treats an exchange as a default when investors receive less value than the original promise \emph{and} the exchange is undertaken to avoid a conventional default \citep[the ``distressed exchange'' criteria; see][]{roerotaru2026}, so the ``distressed exchange'' tag is S\&P's own judgment that the deal was coercive in substance rather than opportunistic. The 2018--2025 studies contain 548 defaults by issuers S\&P classifies as U.S.\ (a region that in S\&P's definition includes Bermuda and Cayman domiciles). Of these, 275 are distressed exchanges. Ten are removed because the operating company is not U.S.-based, and two because the event was in fact a Chapter 11 filing mis-tagged in the tables (Bertucci's, April 2018; Riverbed, November 2021), while one Chapter 11 tag was reversed on inspection (GEO Group, August 2022, an exchange). Of the remaining 263, 54 are the S\&P record of a deal already in the Roe--Rotaru list and 21 are \emph{other} exchanges by Roe--Rotaru companies on different dates; both are set aside so that an issuer's LME and its pro rata exchange are never counted twice. That leaves 188 pro rata distressed exchanges, which together with the 89 LMEs make up the 277-deal analysis sample.
+
+Two features of this construction matter for interpretation. First, S\&P publishes only defaults by \emph{publicly} rated issuers; confidentially rated defaulters, roughly 11--13\% of the total in each year's study, are invisible, as are unrated private-credit borrowers. Second, 35 of the 89 Roe--Rotaru LMEs do not appear in S\&P's tables at all---19 because a new-money drop-down or double-dip is not a default under S\&P's definition, 5 because they pre-date 2018, and the rest because the issuer was unrated or non-U.S.---so the pro rata set is a comparison group of \emph{S\&P-recognised} exchanges rather than a census of all out-of-court restructurings.
 
 \subsection{Cause-of-distress coding}
-[TODO: the six-code rubric (A1 demand/operating shock, A2 financial shock, B1 secular industry, B2 firm-specific, B3 legal/regulatory, C mixed), the directed content analysis method applied to S\&P and Moody's rating actions in the year before each deal, tie-break rules, and the reliability plan (second coder on a 30\% subsample; Cohen's $\kappa$).]
 
-\subsection{Outcomes and specification}
-Following \citet{roerotaru2026}, the outcome is failure---a Chapter 11 filing or a further distressed exchange---within $h \in \{1,2,3\}$ years of the deal, measured only on deals old enough to observe $h$ years as of the data cutoff (14 January 2026). The main specification is a linear probability model,
+The independent variable is the cause of each firm's distress in the year before the exchange. Following \citet{wruck1990} and \citet{andrade1998}, the top-level distinction is between a firm whose business is intact but whose balance sheet is not (financial distress; group A, ``shock'') and a firm whose business itself is impaired (economic distress; group B, ``structural''), with a third group (C, ``mixed'') for firms in which an external shock landed on a pre-existing structural problem. Each group is subdivided: A1 demand or operating shock, A2 financial shock (buyout leverage, maturity wall, refinancing risk with stable EBITDA); B1 secular industry decline, B2 firm-specific deterioration, B3 legal or regulatory. The full codebook, including tie-break rules, is reproduced in Appendix~\ref{app:codebook}.
+
+The source text is the S\&P and Moody's rating-action rationales published in the twelve months before the deal, supplemented by the agencies' statements of the EBITDA trend over the prior two years. Coding follows a directed (deductive) content-analysis protocol \citep{hsieh2005}: the categories and rules are fixed in advance, the coder identifies the \emph{primary} driver the agency names, and secondary factors do not change the letter. Three tie-break rules do most of the work. The EBITDA rule leans B when EBITDA fell by more than roughly 10\% over two years \emph{and} the agency attributes the fall to the business rather than to an external event, and leans A2 when EBITDA is flat or rising; this operationalises Andrade and Kaplan's industry-adjusted operating-performance test with the information available for private issuers. The COVID rule codes a 2020--21 deal in which the pandemic is named as primary as A1 unless the issuer had already been downgraded or placed on negative outlook for operating reasons in the 24 months before March 2020, in which case it is C. The LBO rule codes leverage from a buyout or dividend recapitalisation on a stable business as A2 rather than B2. For each deal the coder records the code, a confidence level, the primary and secondary drivers, the verbatim agency language relied on, the EBITDA trend and the sources consulted.
+
+The first-pass codes were produced by an AI research assistant applying this codebook deal by deal, with the agency text and sources retained for every observation. Because that is a non-standard coder, Section~\ref{sec:reliability} treats it as coder~\#1 and tests it against independent re-codings.
+
+\subsection{Coding reliability}
+\label{sec:reliability}
+
+Reliability is assessed in the way the recent literature on language models as annotators recommends \citep{gilardi2023, tornberg2024, ziems2024}: the same evidence packet is re-coded many times by several independent models, agreement is summarised with Krippendorff's $\alpha$ \citep{krippendorff2018} and Fleiss' $\kappa$ \citep{landis1977}, and the downstream estimates are re-run under each coding.
+
+Each re-coding ``coder'' receives, for every deal, the company name, deal date and S\&P industry sector; the verbatim pre-deal agency language; the two-year EBITDA direction; the secondary factors recorded; and the codebook. It does not receive the existing code, coder~\#1's rationale, the deal's form (LME or pro rata) or anything about the outcome or the terms. Because a single run of a language model at non-zero temperature is one draw from a distribution over labels \citep{reiss2023}, each model codes each deal repeatedly and the share of runs landing on each group is used as that model's probability that the deal is A, B or C \citep[``self-consistency'';][]{wang2023}. Three models were used---gpt-4o-mini and gpt-4.1-mini with 30 runs per deal and gpt-4o with 10---for 19,310 codings of the 275 deals with agency text. The Monte-Carlo error of a share estimated from 30 runs is at most about $\pm 9$ percentage points, which is adequate for classifying deals as confidently or ambiguously coded; additional precision is better bought with additional model families, which are closer to independent coders, than with additional runs of one model.
+
+The results are as follows. The three models agree with one another on 80--86\% of deals pairwise ($\alpha = 0.70$ among the three modal labels; $0.72$ across all individual runs), and with coder~\#1 on 65\% ($\alpha = 0.38$--$0.46$ per model, $0.56$ with all four coders). On 74\% of deals at least 80\% of the 70 runs agree. The disagreement with coder~\#1 is concentrated in the mixed group: the models reclassify 43 of coder~\#1's 82 C deals as structural, whereas on the A-versus-B distinction that Part~1 rests on agreement is 83\%. The reclassification is informative rather than noise---coder~\#1's C deals that the models move to B fail within two years at 48\%, those they leave in A or C at 14\%---which indicates that the C rule, not the shock/structural line, is where coder judgment enters. A name-leakage check in which the company is anonymised in the prompt and in the quoted text, and the date rounded to the year, changes the modal label on 9\% of deals and the probability of a structural code by 0.06 on average, so the coders are responding to the agency language and the EBITDA rule rather than to what they may already know about well-known issuers. Section~\ref{sec:p1} reports the main estimate under four codings: coder~\#1's labels; coder~\#1's labels on the high-agreement subset only; the pooled model probability of a structural code entered as a continuous regressor, which is the measurement-error-aware estimate in the spirit of \citet{egami2023}; and the models' modal labels. [TODO once done: the disagreements will be adjudicated by hand against the full rating-action text, with the 24-month lookback rule applied to C, and the adjudicated codes used as the main specification.]
+
+\subsection{Outcomes}
+
+Following \citet{roerotaru2026}, a deal ``fails'' if the issuer files for Chapter 11 or completes a further distressed exchange. For the LMEs the outcome and its date are Roe and Rotaru's; for the pro rata exchanges they are taken from the issuer's later appearances in the S\&P default tables, with Chapter 11 dates verified against dockets. Outcomes are measured within $h \in \{1, 2, 3\}$ years of the deal and, to avoid comparing a 2015 deal observed for eleven years with a 2025 deal observed for months, a deal enters the $h$-year analysis only if the data cutoff (14 January 2026) lies at least $h$ years after it. Of the 277 deals, 239 are eligible at one year, 186 at two and 134 at three. Bankruptcy alone is reported alongside the combined measure. Because an issuer may appear more than once, standard errors are clustered by issuer throughout; with only eleven industry groups, clustering by industry would leave too few clusters for reliable inference \citep{cameron2015}.
+
+\subsection{Terms of the exchange}
+
+For Part~2, the terms of each S\&P-recorded exchange (the 188 pro rata deals and the 54 LMEs S\&P records; 242 in all) were coded from the S\&P and Moody's releases announcing the selective default and from the sources those releases cite. Sixteen fields are recorded---transaction type, treatment of non-participating holders, haircut, debt reduction, maturity extension, coupon change, new money and its priority, equity to creditors, governance rights, covenant changes, sponsor support, and the evidence and sources---and collapsed into binary flags: \texttt{haircut\_any}, \texttt{equitized}, \texttt{extension\_any}, \texttt{pik}, \texttt{coupon\_up}, \texttt{new\_money\_any}, \texttt{nm\_priming} (new money that primes existing lenders), \texttt{equity\_control}, \texttt{governance}, \texttt{docs\_tight}, \texttt{docs\_loose}, \texttt{sponsor\_support} and \texttt{non\_pro\_rata\_terms}. A flag is missing, not zero, when the release does not address that term, and every share reported is computed over deals where the term is stated. Forty open-market repurchases, which carry no lender-imposed terms, are excluded, leaving 200 negotiated deals (148 pro rata, 52 LMEs).
+
+Two kinds of summary measure are used. The first are simple counts: a control index (0--5: haircut, control equity, governance rights, documents tightened, priming lender new money), an ownership index (0--3) and a runway index (0--4: extension, PIK, documents loosened, sponsor support), together with a relief-type classification into \emph{balance-sheet fix} (haircut or equitisation) and \emph{runway only} (extension or PIK with no haircut). Because a count treats an unstated term as absent and rewards deals whose releases happen to mention more terms, the second is a standardised strictness index: each flag is $z$-scored over the deals where it is stated, signed so that higher always means tougher on the borrower (the four runway terms enter negatively), and averaged over whatever components are observed for the deal \citep{kling2007}; an inverse-covariance-weighted version \citep{anderson2008} is reported as well. The strictness index is defined for all 148 negotiated pro rata deals.
+
+\subsection{Specifications}
+
+The main Part~1 specification is a linear probability model,
 \begin{equation}
   \text{Fail}_{i,h} = \alpha + \beta_B\,\text{Structural}_i + \beta_C\,\text{Mixed}_i + \gamma_{t(i)} + \delta_{j(i)} + \varepsilon_i ,
   \label{eq:main}
 \end{equation}
-where the omitted group is shock-driven (A) firms, $\gamma_t$ and $\delta_j$ are deal-year and industry fixed effects, and standard errors are clustered by issuer. Pooled specifications add an LME indicator and its interaction with cause. Logit average marginal effects are reported as a robustness check.
+estimated on deals eligible at horizon $h$, where the omitted group is shock-driven (A) firms, $\gamma_t$ and $\delta_j$ are deal-year and industry fixed effects, and standard errors are clustered by issuer. The coefficient $\beta_B$ is the percentage-point difference in failure probability between structural and shock firms with the same vintage and industry. The model is estimated for pro rata exchanges alone and, pooling, with an LME indicator and its interaction with cause. A linear probability model is used because the fixed effects produce small cells in which a logit does not converge and because interaction terms in nonlinear models do not have the interpretation of interest \citep{aiNorton2003}; logit average marginal effects without industry effects are reported as a check. Raw rates are compared with Fisher's exact test.
+
+Part~2 uses the same right-hand side with each term, index or the strictness score as the dependent variable, on negotiated pro rata exchanges, so that deal form is held fixed and $\beta_B$ measures whether lenders write different terms for structural than for shock borrowers of the same vintage and industry. A final specification regresses two-year failure on the strictness score together with the cause indicators: if lenders were already pricing cause into the terms, the terms would absorb the cause effect and $\beta_B$ would fall toward zero once strictness is included.
 
 % ---------------------------------------------------------------------
 \section{Results}
 % ---------------------------------------------------------------------
 
 \subsection{Part 1: Cause of distress and post-exchange outcomes}
+\label{sec:p1}
 
 Table~\ref{tab:rates} reports raw failure rates. Among pro rata exchanges, structurally distressed firms fail about twice as often as shock-driven firms: 52\% against 28\% within two years (Fisher exact $p = 0.02$) and 69\% against 42\% within three ($p = 0.03$). Among LMEs the gap is small and not significant (86\% against 78\% at two years), though only 45 LMEs are old enough to observe.
 
@@ -141,6 +176,36 @@ Table~\ref{tab:reg_part1} reports the regression estimates. With year and indust
 
 \appendix
 \section{Cause-of-distress codebook}
-[TODO: Appendix A from the methods note.]
+\label{app:codebook}
+
+\noindent\textbf{Unit.} One distressed exchange. Evidence: S\&P and Moody's rating-action rationales in the 12 months before the deal; the agencies' statement of the EBITDA trend over the prior two years; secondary factors named.
+
+\medskip\noindent\textbf{A --- Shock} (temporary; the business model is intact, the problem is expected to pass or is purely financial).
+\begin{description}
+  \item[A1 Demand / operating shock.] An identifiable external event hit demand, prices or operations (pandemic, commodity-price collapse, hurricane, strike, a one-off customer loss) and the agency language treats it as cyclical or temporary.
+  \item[A2 Financial shock.] The operating business is stable (EBITDA flat or up) but the capital structure is the problem: buyout leverage, a maturity wall, refinancing risk, floating-rate interest burden, a covenant breach with stable EBITDA.
+\end{description}
+
+\noindent\textbf{B --- Structural} (the business itself is impaired and the agency does not expect it to recover on its own).
+\begin{description}
+  \item[B1 Secular industry decline.] The whole industry is shrinking (print media, department stores, coal, landline telecom, offshore drilling after 2014).
+  \item[B2 Firm-specific deterioration.] Competitive losses, failed strategy, botched integration, lost contracts, management failures: the firm is declining while its industry is not.
+  \item[B3 Legal / regulatory.] Litigation, regulatory change or government action is the primary driver (opioid liability, reimbursement cuts, loss of a licence).
+\end{description}
+
+\noindent\textbf{C --- Mixed.} An A-type shock landed on a firm that already had B-type problems, and neither clearly dominates.
+
+\medskip\noindent\textbf{Tie-break rules, applied in order.}
+\begin{enumerate}
+  \item Identify the \emph{primary} driver the agency names. If one driver is clearly primary, code it; secondary factors do not change the letter.
+  \item \emph{EBITDA rule.} If EBITDA fell by more than about 10\% over the two years before the deal \emph{and} the agency attributes the fall to the business rather than to an external event, lean B. If EBITDA is flat or up, lean A2.
+  \item \emph{COVID rule.} A 2020--21 deal in which the agency names the pandemic as primary is A1 unless the issuer was already on negative outlook or downgraded for operating reasons in the 24 months before March 2020, in which case it is C.
+  \item \emph{LBO rule.} Leverage from a buyout or dividend recapitalisation on a stable business is A2, not B2.
+  \item If an external shock and a pre-existing structural problem are given roughly equal weight, code C.
+\end{enumerate}
+
+\noindent\textbf{Recorded for every deal.} Code; confidence (High / Medium / Low); primary driver; secondary drivers; verbatim agency language relied on, with agency and month; EBITDA trend; sources.
+
+\noindent\textbf{Repeat exchanges} by the same issuer are coded separately for each deal's own twelve-month window.
 
 \end{document}
