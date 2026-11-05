@@ -1,0 +1,135 @@
+% =====================================================================
+%  Junior Independent Work  --  Steven Goetz, Princeton Economics
+%  Skeleton: sections marked [TODO] are placeholders; the Literature
+%  Review and the two Results tables are filled in.
+% =====================================================================
+\documentclass[12pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{booktabs}          % \toprule \midrule \bottomrule in tables
+\usepackage{multirow}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage[hidelinks]{hyperref}
+\usepackage{natbib}            % \citet{} and \citep{} with author-year style
+\bibliographystyle{apalike}
+
+\doublespacing
+
+\title{Does Runway Help? Cause of Distress, Lender Screening,\\
+       and the Outcomes of Liability Management Exercises}
+\author{Steven Goetz\\ Department of Economics, Princeton University\\
+        \small Junior Independent Work, Fall 2026}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+\noindent [TODO: 150--200 words. Question, data (277 U.S. exchanges 2014--2025: 89 coercive LMEs from Roe \& Rotaru and 188 pro rata distressed exchanges from S\&P), method (cause-of-distress coding; failure within 1/2/3 years; LPMs with year and industry fixed effects), headline results (structural firms fail about twice as often after a pro rata exchange, 52\% vs.\ 28\% within two years; LMEs fail regardless of cause; lenders' terms do not vary with cause), and what it means for lenders' consent.]
+\end{abstract}
+
+% ---------------------------------------------------------------------
+\section{Introduction}
+% ---------------------------------------------------------------------
+
+Do post-LME outcomes depend on whether a firm's distress stems from a temporary macro shock or from operational decline, and do the lenders who must approve these deals screen on that distinction?
+
+The question has two parts that share one dataset. Part 1 tests whether the cause of distress predicts whether a coercive, non-pro rata liability management exercise (LME) is followed by default or bankruptcy. Part 2 asks whether lenders already sort firms on this basis, by testing whether lender-demanded terms (new money, priority layers, minority treatment, covenant changes) vary with the cause of distress.
+
+[TODO: 2--3 paragraphs of motivation. Why LMEs matter now; the Roe \& Rotaru headline that 71\% fail within three years; the objection that sponsors will propose an LME regardless, so the decision point that matters is the lenders' consent; one-paragraph preview of results.]
+
+% ---------------------------------------------------------------------
+\section{Literature Review}
+% ---------------------------------------------------------------------
+
+The literature this thesis draws on falls into four groups: the direct evidence on coercive LMEs and the loan market's response to them; the incentive theory that explains why sponsors pursue such deals; the private equity baseline against which LME-era outcomes can be judged; and the older empirical literature on which distressed firms restructure successfully and in what form.
+
+\subsection{Evidence on coercive LMEs}
+
+\citet{roerotaru2026} is the paper this thesis extends. Using a hand-collected dataset of 89 non-pro rata deals closed between 2014 and 2025, drawn from Octus, 9fin, Debtwire, and CreditSights, together with S\&P's corporate default reports and prepackaged Chapter 11 cases from BankruptcyData, they ask whether coercive LMEs deliver what their proponents promise: bankruptcy avoidance and a repaired balance sheet. Their answer is largely no. Forty percent of LME firms file for bankruptcy within one year and 71\% within three; aggregate debt is essentially unchanged (+0.64\%) while the average deal adds 1.6 priority layers; 88\% of firms remain rated CCC+ or below; and post-LME bankruptcies take 7.1 months to confirmation against 2.5 for prepacks. Their method---post-deal survival rates at one, two, and three years, before-and-after comparisons of debt and ratings, and OLS regressions of re-default on LME status with controls for pre-deal rating, industry, year, and size---is the template for Part 1 of this thesis. The paper treats the 89 firms as a single pool; this thesis splits that pool by cause of distress, replicating the pooled failure rates first and then decomposing them. Their definition of a non-pro rata deal sets the sample boundary, and their S\&P comparison universe is the source of the pro rata control group.
+
+\citet{buccolanini2024} supply the main evidence that lenders can respond to LME risk. Hand-coding blocker provisions in newly originated syndicated loans before and after J.Crew's dropdown (2016) and Serta's uptier (2020), they find that the share of loans blocking uptiers rose from roughly 40\% to 75\% within a year of Serta, while dropdown protections barely moved after J.Crew. Lenders, in other words, adjust at origination. Part 2 of this thesis asks whether they also adjust at the moment of signing a specific deal, a margin the paper does not examine. Its pre- and post-Serta cutoff also motivates loan vintage as a control, and its uptier-versus-dropdown split is used as a robustness cut.
+
+\citet{badawi2024} ask whether price discipline drove that contractual change. Classifying all publicly traded loans outstanding in summer 2020 as uptier-susceptible or immune, and running an event study around the rulings and deals that established the uptier's legality, they find only weak and fragile evidence that yields diverged---suggesting that lawyers and intermediaries, not prices, moved the terms. If lenders did not price uptier exposure ex ante, whether they screen firms ex post is an open question. This thesis treats their result as Part 2's null hypothesis: lenders sign without discriminating. Their discussion of statistical power is also a caution for interpreting a sample of this size.
+
+\subsection{Why sponsors pursue LMEs}
+
+\citet{buccola2023} argues that private equity sponsors, not senior lenders, now direct the response to distress in the large leveraged firm, and that their first-order incentive is to postpone a reckoning that would crystallize losses. Runway extension and complex capital structures follow from that incentive, and reputational discipline fails while credit is abundant. The argument is doctrinal and descriptive rather than statistical, but it is the clearest statement that sponsor incentives are structural rather than case-specific, which is what allows this design to hold the sponsor constant and treat the lenders' consent as the decision that varies. Its catalogue of sponsor tactics is also used to code deal features consistently.
+
+\citet{buccolakahan2025} ask when coercion in creditor consent solicitation is economically justified. Their framework identifies four structural features---ranking, conditionality, exclusivity, and voting variability---and applies them to exchange offers, exit consents, and exclusive uptiers. Some coercion is efficient for overcoming holdouts, but exclusive non-pro rata uptiers are the hardest to justify. The paper supplies a precise, citable definition of coercion that matches the one \citet{roerotaru2026} use, so the sample boundary here is defensible, and its four features are the dimensions along which Part 2 classifies the terms lenders negotiate.
+
+\citet{ellias2020} explain why controllers of distressed firms adopted aggressive value-shifting tactics in the first place. Through case studies (J.Crew, PetSmart, Neiman Marcus) and an analysis of Delaware law after \emph{Gheewalla}, they show that the weakening of creditor-oriented fiduciary duties and the rise of concentrated sponsor ownership together made hardball rational. This is the option-value account of why equity pursues an LME even at low odds of success, which is the premise behind this thesis's focus on lenders rather than sponsors.
+
+\subsection{The private equity baseline}
+
+\citet{hotchkiss2021} provide the pre-LME benchmark. Studying 2,151 leveraged-loan borrowers from 1997 to 2010 with default hazard models and comparisons of restructuring speed, venue, and outcome by ownership, they find that PE-backed firms carry more leverage and default more often, but restructure faster, more often out of court, liquidate less, and retain sponsor control more often; sponsor capital infusions predict restructuring success. That is a world in which sponsors resolved distress efficiently. Part 1 tests whether the efficiency persists once the deal form shifts value to sponsors. Their outcome definitions (out of court versus in court, time to resolution, survival as a going concern) are adopted here so that results are comparable, and sponsor support is included as a deal term in Part 2.
+
+\subsection{Which distressed firms restructure successfully, and in what form}
+
+\citet{andrade1998} created the distinction that is this thesis's core independent variable. Studying 31 highly leveraged transactions of the late 1980s that later became distressed, they find that financial distress costs 10 to 20\% of firm value, but that the costs are negligible for firms that suffered no adverse economic shock, and that they concentrate in the period after distress begins and before Chapter 11. The financial-versus-economic distinction is the theoretical basis for coding distress as shock-driven or structural, and it generates Part 1's central prediction: runway helps only firms whose problem is the balance sheet. Their criterion for an adverse economic shock---industry-adjusted operating performance---is adapted into the coding rubric, and their sample of leveraged buyouts that became distressed is the closest historical analogue to today's LME firms.
+
+\citet{gilson1990} is the canonical selection study. Among 169 exchange-listed firms in severe financial distress from 1978 to 1987, about half restructured privately; private workouts were more likely for firms with more intangible assets, more bank debt, and fewer creditor classes, and the market reacted more favorably to them. The paper establishes that restructuring form is endogenous to firm characteristics, which is the question Part 2 asks for today's forms. Its logit specification is the model for the selection test here, with the private-versus-Chapter 11 outcome replaced by the coercive LME versus pro rata exchange distinction, and its covariates added as controls where the data allow.
+
+\citet{asquith1994} examine how 102 distressed high-yield issuers tried to avoid bankruptcy and what determined success. Secured private debt combined with many public issues impedes out-of-court restructuring; asset sales help but are limited in distressed industries; and more profitable distressed firms are not more likely to avoid bankruptcy. Two of their channels matter for this design. Capital-structure complexity is a barrier to recovery, and LMEs add layers, which may explain post-LME failure. Industry-wide distress limits a firm's options, and is treated as one component of the shock coding. Their null result on profitability is a validity check: a shock-versus-structural split that merely proxied for profitability would be expected to fail.
+
+\subsection{Contribution}
+
+Taken together, the literature establishes two things separately: that coercive LMEs usually fail \citep{roerotaru2026}, and that sponsors have structural reasons to attempt them regardless \citep{buccola2023, ellias2020}. Those findings invite the objection that studying LME effectiveness is pointless, because the party proposing the deal will propose it anyway. This thesis answers that objection by moving the decision point. An LME cannot close without a lender majority, so the useful question is which deals lenders should sign and whether they already choose well. Part 1 brings the financial-versus-economic distinction of \citet{andrade1998} to the LME setting, testing whether the pooled failure rate hides a subgroup of shock-driven firms for which runway works. Part 2 revives the selection question of \citet{gilson1990} and \citet{asquith1994}, asking whether cause of distress predicts the terms lenders extract. If shock-driven firms survive but lenders sign both kinds alike, the finding gives lenders, cooperation groups, and independent directors a screening rule and shifts the policy debate from banning LMEs to informing the consent that enables them.
+
+% ---------------------------------------------------------------------
+\section{Data and Method}
+% ---------------------------------------------------------------------
+
+\subsection{Sample construction}
+[TODO: paste from the methods note. 548 U.S. S\&P defaults 2018--2025 $\rightarrow$ 263 distressed exchanges after region and transaction-type screens $\rightarrow$ 188 pro rata exchanges not matched to a Roe \& Rotaru deal; plus the 89 Roe \& Rotaru LMEs; 277 deals in the analysis sample. Note the confidential-rating gap and the 35 RR deals S\&P does not list.]
+
+\subsection{Cause-of-distress coding}
+[TODO: the six-code rubric (A1 demand/operating shock, A2 financial shock, B1 secular industry, B2 firm-specific, B3 legal/regulatory, C mixed), the directed content analysis method applied to S\&P and Moody's rating actions in the year before each deal, tie-break rules, and the reliability plan (second coder on a 30\% subsample; Cohen's $\kappa$).]
+
+\subsection{Outcomes and specification}
+Following \citet{roerotaru2026}, the outcome is failure---a Chapter 11 filing or a further distressed exchange---within $h \in \{1,2,3\}$ years of the deal, measured only on deals old enough to observe $h$ years as of the data cutoff (14 January 2026). The main specification is a linear probability model,
+\begin{equation}
+  \text{Fail}_{i,h} = \alpha + \beta_B\,\text{Structural}_i + \beta_C\,\text{Mixed}_i + \gamma_{t(i)} + \delta_{j(i)} + \varepsilon_i ,
+  \label{eq:main}
+\end{equation}
+where the omitted group is shock-driven (A) firms, $\gamma_t$ and $\delta_j$ are deal-year and industry fixed effects, and standard errors are clustered by issuer. Pooled specifications add an LME indicator and its interaction with cause. Logit average marginal effects are reported as a robustness check.
+
+% ---------------------------------------------------------------------
+\section{Results}
+% ---------------------------------------------------------------------
+
+\subsection{Part 1: Cause of distress and post-exchange outcomes}
+
+Table~\ref{tab:rates} reports raw failure rates. Among pro rata exchanges, structurally distressed firms fail about twice as often as shock-driven firms: 52\% against 28\% within two years (Fisher exact $p = 0.02$) and 69\% against 42\% within three ($p = 0.03$). Among LMEs the gap is small and not significant (86\% against 78\% at two years), though only 45 LMEs are old enough to observe.
+
+\input{tables/rates}
+
+Table~\ref{tab:reg_part1} reports the regression estimates. With year and industry fixed effects, a structural firm is 36 percentage points more likely than a shock firm to fail within two years of a pro rata exchange (column 1), 39 points more likely at three years (column 2), and 21 points more likely to file for Chapter 11 specifically (column 3). In the pooled sample (column 4), doing an LME rather than a pro rata exchange raises the two-year failure probability by 27 points holding cause fixed, and the structural penalty survives alongside it.
+
+\input{tables/reg_part1}
+
+[TODO: balance check on pre-deal rating (median B$-$ in both groups, Mann--Whitney $p = 0.78$); robustness (first deal per issuer, no coercion flag, sourced codes only, logit AMEs); the interaction result.]
+
+\subsection{Part 2: Do lenders write different terms by cause?}
+
+[TODO: term shares by cause group (no gradient: haircut 44\% vs.\ 39\%, control transfer 10\% vs.\ 10\%, documents tightened 33\% vs.\ 32\%); indices and Kruskal--Wallis tests; LME vs.\ pro rata terms; vintage shift 2018--21 to 2023--25; relief type and failure (balance-sheet fix 29\% vs.\ runway-only 51\%). Export these from the Colab notebook with \texttt{stargazer} / \texttt{to\_latex()} the same way as the Part 1 tables.]
+
+% ---------------------------------------------------------------------
+\section{Discussion}
+% ---------------------------------------------------------------------
+[TODO: interpretation; what the results say about lenders' consent; limitations (sample size, coding by rating-agency narrative, confidential issuers, document-layer terms not yet coded); future work.]
+
+% ---------------------------------------------------------------------
+\section{Conclusion}
+% ---------------------------------------------------------------------
+[TODO]
+
+\bibliography{references}
+
+\appendix
+\section{Cause-of-distress codebook}
+[TODO: Appendix A from the methods note.]
+
+\end{document}
