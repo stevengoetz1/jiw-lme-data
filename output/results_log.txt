@@ -460,6 +460,11 @@ FIGURE 1 data
    (c) Original three labels      Mixed      LME           67 12
    (c) Original three labels Structural      LME           86 22
 
+SPECTRUM FIGURE: yearly mean score
+year   2018   2019  2020  2021   2022   2023   2024   2025
+mean   0.71   0.69   0.5   0.6   0.77   0.64   0.72   0.74
+size  18.00  22.00  49.0  19.0  19.00  50.00  54.00  39.00
+
 EXTRA CHECKS (pro rata, two-year failure, year + industry fixed effects unless stated)
   bankruptcy within 2y                                 +0.125 se 0.078 p 0.108 n 141
   repeat exchange, no bankruptcy, within 2y            +0.123 se 0.097 p 0.207 n 141

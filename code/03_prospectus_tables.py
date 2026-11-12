@@ -92,7 +92,14 @@ print("  two-year failure by relief type:", rt.groupby("fix").fail_2y.mean().rou
 drop = (r"\quad Median &", r"\quad Median deal year", r"\quad Deals observable at 1 year", r"\quad\quad Failed again within 1 year",
         r"\quad\quad Filed for bankruptcy within 1 year", r"\quad\quad Filed for bankruptcy within 3 years")
 src = open(P("output", "tables", "thesis", "sumstats.tex")).read().rstrip("\n").split("\n")
-write("sumstats.tex", [l.replace(r"\begin{table}[htbp]", r"\begin{table}[H]") for l in src if not l.startswith(drop)])
+src = [l.replace(r"\begin{table}[htbp]", r"\begin{table}[H]") for l in src if not l.startswith(drop)]
+grp = [a[a.pro_rata == 1], a[a.lme == 1], a]
+pc = lambda f: " & ".join(f"{f(g):.0%}".replace("%", r"\%") for g in grp)
+extra = [r"\quad Share structural, binary (score above one half) & " + pc(lambda g: g.major.mean()) + r" \\",
+         r"\addlinespace \textit{Original three labels} & & & \\"] + \
+        [f"\\quad Share {lab} & " + pc(lambda g, c=c: (g.cause_group == c).mean()) + r" \\" for c, lab in [("A", "shock"), ("C", "mixed"), ("B", "structural")]]
+k = [i for i, l in enumerate(src) if l.startswith(r"\quad Share high")][0]
+write("sumstats.tex", src[:k + 1] + extra + src[k + 1:])
 
 # ------------------------------------------------------------------ Figure 1: failure by cause, three versions
 a["label3"] = a.cause_group.map({"A": "Shock", "C": "Mixed", "B": "Structural"})
@@ -114,6 +121,32 @@ axes[0].set_ylabel("Failed within 2 years (%)"); axes[1].legend(frameon=False, l
 plt.savefig(P("output", "figures", "fig1_failure_by_cause.png"), dpi=200, bbox_inches="tight"); plt.close()
 fd = pd.DataFrame(rows); fd.to_csv(OUT("fig1_data.csv"), index=False)
 print("\nFIGURE 1 data"); print(fd.to_string(index=False))
+
+# ------------------------------------------------------------------ Figure: every deal on the 0-1 scale, by deal date
+a["t"] = a.deal_date.dt.year + (a.deal_date.dt.dayofyear - 1) / 365
+LAB = [("J. Crew", 2017, 90, "J. Crew"), ("Mood Media", 2019, 90, "Mood Media"), ("Pinnacle Operating", 2020, 150, "Pinnacle (0.76)"), ("Revlon", 2020, 320, "Revlon (0.51)"),
+       ("Mister Car Wash", 2020, 270, "Mister Car Wash"), ("Rite Aid", 2022, 90, "Rite Aid"), ("WeWork", 2023, 270, "WeWork"), ("AMC Entertainment", 2024, 270, "AMC")]
+co = lambda d: " ".join(f"({t:.3f},{y:.3f})" for t, y in zip(d.t, d.score))
+ym = a.groupby("year").score.agg(["mean", "size"]); ym = ym[ym["size"] >= 15]
+F = [r"\begin{figure}[H]", r"\centering", r"\begin{tikzpicture}",
+     r"\begin{axis}[width=0.98\textwidth, height=6.4cm, xmin=2013.6, xmax=2026.2, ymin=-0.2, ymax=1.2,",
+     r"  xtick={2014,2016,...,2026}, minor xtick={2015,2017,...,2025}, x tick label style={/pgf/number format/1000 sep=}, ytick={0,0.25,0.5,0.75,1},",
+     r"  xlabel={Deal date}, ylabel={Structural score}, label style={font=\footnotesize}, ticklabel style={font=\footnotesize},",
+     r"  ymajorgrids, grid style={gray!20}, axis lines*=left, clip=false,",
+     r"  legend style={at={(0.5,1.02)}, anchor=south, draw=none, font=\footnotesize, legend columns=3, /tikz/every even column/.append style={column sep=8pt}}]",
+     r"\addplot[only marks, mark=*, mark size=1.5pt, color=blue!55!black, opacity=0.45] coordinates {" + co(a[a.pro_rata == 1]) + "};",
+     r"\addplot[only marks, mark=triangle*, mark size=2pt, color=red!65!black, opacity=0.6] coordinates {" + co(a[a.lme == 1]) + "};",
+     r"\addplot[black, thick, mark=diamond*, mark size=2pt] coordinates {" + " ".join(f"({y + 0.5:.1f},{m:.3f})" for y, m in zip(ym.index, ym["mean"])) + "};",
+     r"\legend{Pro rata exchanges, LMEs, Yearly average}"]
+for name, yr, ang, text in LAB:
+    r = a[a.company.str.contains(name, regex=False) & (a.year == yr)].iloc[0]
+    F.append(f"\\node[pin={{[pin edge={{gray, thin}}, pin distance=11pt, font=\\scriptsize, inner sep=1pt, fill=white, fill opacity=0.85, text opacity=1]{ang}:{text}}}, inner sep=0pt] at (axis cs:{r.t:.3f},{r.score:.3f}) {{}};")
+F += [r"\end{axis}", r"\end{tikzpicture}", r"\caption{Where each deal falls on the structural score, by deal date}", r"\label{fig:spectrum}",
+      r"\begin{minipage}{0.95\textwidth}\vspace{2pt}\footnotesize",
+      f"\\textit{{Notes.}} Each point is one of the {len(a)} scored deals. 0 means every one of the 70 codings says shock and 1 means every coding says structural. The yearly average is shown for years with at least 15 deals.",
+      r"\end{minipage}", r"\end{figure}"]
+write("fig_spectrum.tex", F)
+print("\nSPECTRUM FIGURE: yearly mean score"); print(ym.round(2).T.to_string())
 
 # ------------------------------------------------------------------ extra checks quoted in the prospectus text
 print("\nEXTRA CHECKS (pro rata, two-year failure, year + industry fixed effects unless stated)")
