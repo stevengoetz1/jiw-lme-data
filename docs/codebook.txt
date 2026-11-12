@@ -49,3 +49,25 @@ codebook: gpt-4o-mini (30 runs/deal), gpt-4.1-mini (30), gpt-4o (10), temperatur
   *_gpt4omini_masked = same model, 30 runs, with the company name scrubbed from the prompt and quotes and the
                        date rounded to the year (name-leakage check; 91% of modal labels unchanged)
 Full per-run output with one-sentence rationales: llm_codes.csv (download from the Colab Files pane).
+
+============================================================
+data/analysis/deals_scored.csv  (built by code/01_build_score.py; do not edit by hand)
+============================================================
+One row per analysis deal (277). All columns of lme_deals_clean.csv, plus:
+  score            structural score, 0-1: share of the 70 re-codings that say structural, mixed = one half (blank for 2 deals)
+  score_noC        the same ignoring mixed codings
+  score_<model>    the score from one model's runs alone
+  score_masked     gpt-4o-mini score with company names removed from the text
+  struct_major     1 if score > 0.5 (binary, majority wins)
+  score_bin        Low (0-0.33) / Middle (0.33-0.67) / High (0.67-1)
+  coder1_score     original three labels on the same scale (A = 0, C = 0.5, B = 1)
+  form             LME / Pro rata
+  repurchase       1 = open-market repurchase (no negotiated terms)
+  sp_listed        1 = the deal appears in S&P's default tables
+  needs_review     1 = re-check this row before the final paper; review_reason says why
+
+data/analysis/terms_scored.csv  (built by code/01_build_score.py)
+One row per negotiated exchange (200). All columns of lme_terms_clean.csv, plus score, score_bin, struct_major,
+  strict_klk       strictness index (mean of standardised terms, higher = tougher on the borrower; pro rata deals only)
+  fix              1 = haircut or equitisation
+  runway_only      1 = extension or PIK with no debt cut

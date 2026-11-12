@@ -1,0 +1,36 @@
+\begin{table}[htbp]
+\centering
+\caption{The structural score under alternative constructions}
+\label{tab:robust}
+\small
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{l r r r r}
+\toprule
+Specification & Coefficient & Std.\ error & $p$ & $n$ \\
+\midrule
+Main: continuous score & 0.248$^{**}$ & 0.109 & 0.023 & 141 \\
+\addlinespace
+Binary, majority wins (score $>$ 0.5) & 0.201$^{**}$ & 0.085 & 0.018 & 141 \\
+High bin vs low bin (three-bin model) & 0.193$^{*}$ & 0.100 & 0.054 & 141 \\
+Continuous, middle bin dropped & 0.210$^{*}$ & 0.112 & 0.061 & 126 \\
+Score ignoring 'mixed' runs & 0.197$^{**}$ & 0.098 & 0.045 & 136 \\
+\addlinespace
+Coder \#1 on a 0 / 0.5 / 1 scale & 0.367$^{***}$ & 0.112 & 0.001 & 141 \\
+Coder \#1 dummies: structural vs shock & 0.362$^{***}$ & 0.113 & 0.001 & 141 \\
+\addlinespace
+Score from gpt-4o-mini only & 0.183$^{}$ & 0.113 & 0.107 & 141 \\
+Score from gpt-4.1-mini only & 0.240$^{**}$ & 0.097 & 0.013 & 141 \\
+Score from gpt-4o only & 0.304$^{***}$ & 0.094 & 0.001 & 141 \\
+Name-scrubbed score (gpt-4o-mini) & 0.157$^{}$ & 0.112 & 0.158 & 141 \\
+\addlinespace
+First exchange per issuer only & 0.348$^{***}$ & 0.134 & 0.009 & 108 \\
+Dropping coercion-flagged pro rata deals & 0.249$^{**}$ & 0.113 & 0.028 & 134 \\
+No fixed effects & 0.236$^{**}$ & 0.096 & 0.014 & 141 \\
+Logit, average marginal effect (no fixed effects) & 0.237$^{**}$ & 0.095 & 0.013 & 141 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\begin{minipage}{0.95\textwidth}\vspace{4pt}\footnotesize
+\textit{Notes.} Dependent variable: failure within two years of a pro rata exchange. Each row is a separate linear probability model with year and industry fixed effects unless stated, standard errors clustered by issuer; the coefficient shown is on the cause measure named in the row. $^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01.
+\end{minipage}
+\end{table}
