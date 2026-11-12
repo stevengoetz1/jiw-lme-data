@@ -1,7 +1,7 @@
 \begin{figure}[H]
 \centering
 \begin{tikzpicture}
-\begin{axis}[width=0.98\textwidth, height=5.6cm, xmin=2013.6, xmax=2026.2, ymin=-0.08, ymax=1.08,
+\begin{axis}[width=0.98\textwidth, height=6.2cm, xmin=2013.6, xmax=2026.2, ymin=-0.27, ymax=1.2,
   xtick={2014,2016,...,2026}, minor xtick={2015,2017,...,2025}, x tick label style={/pgf/number format/1000 sep=}, ytick={0,0.25,0.5,0.75,1},
   xlabel={Deal date}, ylabel={Structural score}, label style={font=\footnotesize}, ticklabel style={font=\footnotesize},
   ymajorgrids, grid style={gray!20}, axis lines*=left, clip=false,
@@ -10,6 +10,16 @@
 \addplot[only marks, mark=triangle*, mark size=2pt, color=red!65!black, opacity=0.6] coordinates {(2014.230,0.706) (2015.838,0.544) (2015.921,0.867) (2016.721,0.879) (2017.458,1.000) (2018.414,0.857) (2018.499,1.000) (2018.712,0.950) (2019.600,1.000) (2020.249,0.000) (2020.359,0.507) (2020.474,1.000) (2020.562,0.500) (2020.666,0.500) (2020.704,0.500) (2020.742,0.271) (2020.901,0.121) (2020.992,1.000) (2021.107,0.593) (2022.200,1.000) (2022.236,0.507) (2022.323,0.500) (2022.592,0.986) (2022.638,0.857) (2022.753,0.221) (2022.795,1.000) (2022.795,0.314) (2023.011,0.957) (2023.060,1.000) (2023.329,0.871) (2023.359,0.993) (2023.367,0.986) (2023.367,0.543) (2023.430,0.021) (2023.468,0.357) (2023.548,0.000) (2023.603,0.993) (2023.685,0.693) (2023.704,0.621) (2023.833,0.000) (2023.890,0.600) (2023.964,0.643) (2024.030,1.000) (2024.099,1.000) (2024.104,0.779) (2024.140,0.864) (2024.162,0.129) (2024.200,1.000) (2024.222,1.000) (2024.230,0.964) (2024.310,1.000) (2024.312,0.850) (2024.334,0.786) (2024.405,0.707) (2024.422,1.000) (2024.433,0.214) (2024.444,0.200) (2024.581,0.021) (2024.600,1.000) (2024.622,1.000) (2024.737,1.000) (2024.748,0.857) (2024.811,0.993) (2024.827,1.000) (2024.874,0.364) (2024.918,0.257) (2024.918,1.000) (2024.940,0.079) (2024.945,0.979) (2024.967,1.000) (2024.967,0.471) (2024.978,0.886) (2025.014,1.000) (2025.044,0.957) (2025.079,0.971) (2025.137,0.636) (2025.140,0.957) (2025.323,0.736) (2025.332,0.950) (2025.416,0.443) (2025.416,0.964) (2025.458,0.993) (2025.532,0.993) (2025.562,0.521) (2025.562,0.400) (2025.600,0.893) (2025.899,0.993)};
 \addplot[black, thick, mark=diamond*, mark size=2pt] coordinates {(2018.5,0.715) (2019.5,0.694) (2020.5,0.497) (2021.5,0.603) (2022.5,0.773) (2023.5,0.644) (2024.5,0.724) (2025.5,0.736)};
 \legend{Pro rata exchanges, LMEs, Yearly average}
+\node[pin={[pin edge={gray, thin}, pin distance=11pt, font=\scriptsize, inner sep=1pt, fill=white, fill opacity=0.85, text opacity=1]90:J. Crew}, inner sep=0pt] at (axis cs:2017.458,1.000) {};
+\node[pin={[pin edge={gray, thin}, pin distance=11pt, font=\scriptsize, inner sep=1pt, fill=white, fill opacity=0.85, text opacity=1]200:PetSmart}, inner sep=0pt] at (axis cs:2018.414,0.857) {};
+\node[pin={[pin edge={gray, thin}, pin distance=11pt, font=\scriptsize, inner sep=1pt, fill=white, fill opacity=0.85, text opacity=1]250:Chesapeake}, inner sep=0pt] at (axis cs:2019.699,0.000) {};
+\node[pin={[pin edge={gray, thin}, pin distance=11pt, font=\scriptsize, inner sep=1pt, fill=white, fill opacity=0.85, text opacity=1]320:Revlon}, inner sep=0pt] at (axis cs:2020.359,0.507) {};
+\node[pin={[pin edge={gray, thin}, pin distance=11pt, font=\scriptsize, inner sep=1pt, fill=white, fill opacity=0.85, text opacity=1]150:Serta}, inner sep=0pt] at (axis cs:2020.474,1.000) {};
+\node[pin={[pin edge={gray, thin}, pin distance=11pt, font=\scriptsize, inner sep=1pt, fill=white, fill opacity=0.85, text opacity=1]0:Travelport}, inner sep=0pt] at (axis cs:2020.742,0.271) {};
+\node[pin={[pin edge={gray, thin}, pin distance=11pt, font=\scriptsize, inner sep=1pt, fill=white, fill opacity=0.85, text opacity=1]90:Bed Bath \& Beyond}, inner sep=0pt] at (axis cs:2022.795,1.000) {};
+\node[pin={[pin edge={gray, thin}, pin distance=11pt, font=\scriptsize, inner sep=1pt, fill=white, fill opacity=0.85, text opacity=1]270:WeWork}, inner sep=0pt] at (axis cs:2023.332,0.079) {};
+\node[pin={[pin edge={gray, thin}, pin distance=11pt, font=\scriptsize, inner sep=1pt, fill=white, fill opacity=0.85, text opacity=1]35:Lumen}, inner sep=0pt] at (axis cs:2024.222,1.000) {};
+\node[pin={[pin edge={gray, thin}, pin distance=11pt, font=\scriptsize, inner sep=1pt, fill=white, fill opacity=0.85, text opacity=1]270:AMC}, inner sep=0pt] at (axis cs:2024.581,0.021) {};
 \end{axis}
 \end{tikzpicture}
 \caption{Where each deal falls on the structural score, by deal date}
