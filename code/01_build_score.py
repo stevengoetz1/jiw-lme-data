@@ -16,7 +16,7 @@ sc["sp_listed"] = sc.sp_name.notna().astype(int)                                
 sc["needs_review"], sc["review_reason"] = review_flags(sc, terms, inputs)
 sc.to_csv(P("data", "analysis", "deals_scored.csv"), index=False)
 
-neg = terms[terms.negotiated == 1].merge(sc[["company", "deal_date", "deal_id", "score", "score_bin", "struct_major"]], on=["company", "deal_date"], how="left")
+neg = terms[terms.negotiated == 1].merge(sc[["company", "deal_date", "deal_id", "score", "score_bin", "struct_major", "score2", "score2_bin", "struct_major2"]], on=["company", "deal_date"], how="left")
 neg["industry"] = neg["industry"].fillna("Unknown"); neg["year"] = neg.deal_date.dt.year
 pr = neg.form == "Pro rata"
 neg.loc[pr & neg.score.notna(), "strict_klk"] = strictness_index(neg[pr & neg.score.notna()])   # index is defined on the pro rata H2 sample

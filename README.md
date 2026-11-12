@@ -24,7 +24,9 @@ That takes about a minute and needs `pandas`, `statsmodels`, `scipy` and `matplo
 
 ## The main variable
 
-`score` in `data/analysis/deals_scored.csv` is the structural score: the share of the 70 re-codings that call the deal's distress structural, counting a mixed coding as one half (0 = every coding says shock, 1 = every coding says structural). The same file carries the binary version (`struct_major`), the thirds (`score_bin`), the original three labels (`cause_group`: A shock, B structural, C mixed) and the per-model and names-removed scores used for robustness.
+`score2` in `data/analysis/deals_scored.csv` is the structural score used in the prospectus: the share of 70 blind codings that call the deal's distress structural, where each coding had to choose shock or structural (0 = every coding says shock, 1 = every coding says structural). The counts behind it are in `data/coded/llm_recoding_counts_binary.csv`.
+
+The same file carries the alternatives: `struct_major2` (binary, score2 above one half), `score2_bin` (thirds), `cause_group` (the original three labels: A shock, B structural, C mixed), and `score` (the earlier score from codings that allowed a mixed answer, mixed counting one half), which the thesis draft still uses. `03_prospectus_tables.py` renames `score2` to `score` internally, so in that script `score` is the two-label measure and `score3` the earlier one.
 
 ## Rows to re-check
 
