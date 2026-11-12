@@ -10,6 +10,10 @@ import numpy as np, pandas as pd
 from common import *
 
 sc, tm = load_scored()
+# The prospectus's main measure is the two-label score (share of 70 shock-or-structural codings that say structural).
+# The earlier score, from codings that allowed "mixed" (mixed = one half), is kept as score3 for robustness.
+sc = sc.rename(columns={"score": "score3", "score_bin": "score3_bin", "struct_major": "struct_major3"}).rename(columns={"score2": "score", "score2_bin": "score_bin", "struct_major2": "struct_major"})
+tm = tm.rename(columns={"score": "score3"}).rename(columns={"score2": "score"})
 a = sc[sc.score.notna()].copy()
 a["major"] = a.struct_major
 pr = a[a.pro_rata == 1]
@@ -23,7 +27,7 @@ def write(name, lines):
 
 # ------------------------------------------------------------------ Table 2: three versions of the measure
 COLS = [("fail_2y", e2, ""), ("fail_3y", e3, ""), ("bk_2y", e2, ""), ("fail_2y", pool2, " + lme")]
-PANELS = [("Panel A: continuous structural score (main)", "score", [("score", "Structural score (0--1)")]),
+PANELS = [("Panel A: structural score (main)", "score", [("score", "Structural score (0--1)")]),
           ("Panel B: binary, majority wins (score above one half)", "major", [("major", "Structural majority")]),
           ("Panel C: original three labels (shock omitted)", "mixed + structural", [("mixed", "Mixed"), ("structural", "Structural")])]
 L = [r"\begin{table}[H]", r"\centering", r"\caption{Cause of distress and post-exchange failure, three versions of the measure}", r"\label{tab:reg_part1}", r"\small",
@@ -45,8 +49,8 @@ write("reg_part1.tex", L)
 
 # ------------------------------------------------------------------ Table 3: alternative constructions and samples
 m_rt_d = e2[e2.rating_1y_notch.notna()]
-ROB = [("Main: continuous score", fit("fail_2y ~ score" + FE, e2), "score", True),
-       ("Score from text with company names removed", fit("fail_2y ~ score_masked" + FE, e2), "score_masked", True),
+ROB = [("Main: structural score", fit("fail_2y ~ score" + FE, e2), "score", True),
+       ("Earlier score from codings that allowed ``mixed''", fit("fail_2y ~ score3" + FE, e2), "score3", True),
        ("First exchange per issuer only", fit("fail_2y ~ score" + FE, e2[e2.first_for_issuer == 1]), "score", False),
        ("Excluding open-market repurchases", fit("fail_2y ~ score" + FE, e2[e2.repurchase == 0]), "score", False),
        ("Controlling for rating one year before the deal", fit("fail_2y ~ score + rating_1y_notch" + FE, m_rt_d), "score", False)]
@@ -92,7 +96,18 @@ print("  two-year failure by relief type:", rt.groupby("fix").fail_2y.mean().rou
 drop = (r"\quad Median &", r"\quad Median deal year", r"\quad Deals observable at 1 year", r"\quad\quad Failed again within 1 year",
         r"\quad\quad Filed for bankruptcy within 1 year", r"\quad\quad Filed for bankruptcy within 3 years")
 src = open(P("output", "tables", "thesis", "sumstats.tex")).read().rstrip("\n").split("\n")
-write("sumstats.tex", [l.replace(r"\begin{table}[htbp]", r"\begin{table}[H]") for l in src if not l.startswith(drop)])
+src = [l.replace(r"\begin{table}[htbp]", r"\begin{table}[H]") for l in src if not l.startswith(drop)]
+grp = [a[a.pro_rata == 1], a[a.lme == 1], a]
+pc = lambda f: " & ".join(f"{f(g):.0%}".replace("%", r"\%") for g in grp)
+extra = [r"\quad Share structural, binary (score above one half) & " + pc(lambda g: g.major.mean()) + r" \\",
+         r"\addlinespace \textit{Original three labels} & & & \\"] + \
+        [f"\\quad Share {lab} & " + pc(lambda g, c=c: (g.cause_group == c).mean()) + r" \\" for c, lab in [("A", "shock"), ("C", "mixed"), ("B", "structural")]]
+k0 = [i for i, l in enumerate(src) if "Structural score (0 = shock" in l][0]
+fm = lambda f, fmt: " & ".join(fmt(f(g)) for g in grp)
+src[k0 + 1:k0 + 6] = [r"\quad Mean & " + fm(lambda g: g.score.mean(), "{:.2f}".format) + r" \\", r"\quad Standard deviation & " + fm(lambda g: g.score.std(), "{:.2f}".format) + r" \\"] + \
+    [f"\\quad Share {lab} & " + pc(lambda g, b=b: (g.score_bin == b).mean()) + r" \\" for b, lab in zip(BINS, ["low (0--0.33)", "middle (0.33--0.67)", "high (0.67--1)"])]
+k = [i for i, l in enumerate(src) if l.startswith(r"\quad Share high")][0]
+write("sumstats.tex", src[:k + 1] + extra + src[k + 1:])
 
 # ------------------------------------------------------------------ Figure 1: failure by cause, three versions
 a["label3"] = a.cause_group.map({"A": "Shock", "C": "Mixed", "B": "Structural"})
@@ -115,6 +130,33 @@ plt.savefig(P("output", "figures", "fig1_failure_by_cause.png"), dpi=200, bbox_i
 fd = pd.DataFrame(rows); fd.to_csv(OUT("fig1_data.csv"), index=False)
 print("\nFIGURE 1 data"); print(fd.to_string(index=False))
 
+# ------------------------------------------------------------------ Figure: every deal on the 0-1 scale, by deal date
+a["t"] = a.deal_date.dt.year + (a.deal_date.dt.dayofyear - 1) / 365
+LAB = [("J. Crew", 2017, 90, "J. Crew"), ("Chesapeake", 2019, 250, "Chesapeake"), ("Serta", 2020, 150, "Serta"), ("Steak n Shake", 2020, 200, "Steak n Shake"),
+       ("Travelport", 2020, 290, "Travelport"), ("Bed Bath", 2022, 90, "Bed Bath \\& Beyond"), ("Shutterfly", 2023, 180, "Shutterfly"), ("WeWork", 2023, 270, "WeWork"),
+       ("Lumen", 2024, 35, "Lumen"), ("AMC Entertainment", 2024, 270, "AMC")]        # (company, year, pin angle, text): up to ten well-known deals
+co = lambda d: " ".join(f"({t:.3f},{y:.3f})" for t, y in zip(d.t, d.score))
+ym = a.groupby("year").score.agg(["mean", "size"]); ym = ym[ym["size"] >= 15]
+F = [r"\begin{figure}[H]", r"\centering", r"\begin{tikzpicture}",
+     r"\begin{axis}[width=0.98\textwidth, height=6.2cm, xmin=2013.6, xmax=2026.2, ymin=-0.27, ymax=1.2,",
+     r"  xtick={2014,2016,...,2026}, minor xtick={2015,2017,...,2025}, x tick label style={/pgf/number format/1000 sep=}, ytick={0,0.25,0.5,0.75,1},",
+     r"  xlabel={Deal date}, ylabel={Structural score}, label style={font=\footnotesize}, ticklabel style={font=\footnotesize},",
+     r"  ymajorgrids, grid style={gray!20}, axis lines*=left, clip=false,",
+     r"  legend style={at={(0.5,1.02)}, anchor=south, draw=none, font=\footnotesize, legend columns=3, /tikz/every even column/.append style={column sep=8pt}}]",
+     r"\addplot[only marks, mark=*, mark size=1.5pt, color=blue!55!black, opacity=0.45] coordinates {" + co(a[a.pro_rata == 1]) + "};",
+     r"\addplot[only marks, mark=triangle*, mark size=2pt, color=red!65!black, opacity=0.6] coordinates {" + co(a[a.lme == 1]) + "};",
+     r"\addplot[black, thick, mark=diamond*, mark size=2pt] coordinates {" + " ".join(f"({y + 0.5:.1f},{m:.3f})" for y, m in zip(ym.index, ym["mean"])) + "};",
+     r"\legend{Pro rata exchanges, LMEs, Yearly average}"]
+for name, yr, ang, text in LAB:
+    r = a[a.company.str.contains(name, regex=False) & (a.year == yr)].iloc[0]
+    F.append(f"\\node[pin={{[pin edge={{gray, thin}}, pin distance=11pt, font=\\scriptsize, inner sep=1pt, fill=white, fill opacity=0.85, text opacity=1]{ang}:{text}}}, inner sep=0pt] at (axis cs:{r.t:.3f},{r.score:.3f}) {{}};")
+F += [r"\end{axis}", r"\end{tikzpicture}", r"\caption{Where each deal falls on the structural score, by deal date}", r"\label{fig:spectrum}",
+      r"\begin{minipage}{0.95\textwidth}\vspace{2pt}\footnotesize",
+      f"\\textit{{Notes.}} Each point is one of the {len(a)} scored deals. 0 means every one of the 70 codings says shock and 1 means every coding says structural. The yearly average is shown for years with at least 15 deals.",
+      r"\end{minipage}", r"\end{figure}"]
+write("fig_spectrum.tex", F)
+print("\nSPECTRUM FIGURE: yearly mean score"); print(ym.round(2).T.to_string())
+
 # ------------------------------------------------------------------ extra checks quoted in the prospectus text
 print("\nEXTRA CHECKS (pro rata, two-year failure, year + industry fixed effects unless stated)")
 def show(lab, m, v="score"): print(f"  {lab:52s} {m.params[v]:+.3f} se {m.bse[v]:.3f} p {m.pvalues[v]:.3f} n {int(m.nobs)}")
@@ -123,8 +165,22 @@ show("bankruptcy within 2y", fit("bk_2y ~ score" + FE, x)); show("repeat exchang
 show("excluding 2020", fit("fail_2y ~ score" + FE, e2[e2.year != 2020]))
 for lab, ys in [("2018-19", [2018, 2019]), ("2020", [2020]), ("2021-22", [2021, 2022]), ("2023", [2023])]:
     show(f"vintage {lab} (no fixed effects)", fit("fail_2y ~ score", e2[e2.year.isin(ys)]))
-show("score from gpt-4o-mini with names (masked baseline)", fit("fail_2y ~ score_gpt4omini" + FE, e2), "score_gpt4omini")
-show("score from gpt-4o-mini, names removed", fit("fail_2y ~ score_masked" + FE, e2), "score_masked")
+show("three-label coding, gpt-4o-mini with names", fit("fail_2y ~ score_gpt4omini" + FE, e2), "score_gpt4omini")
+show("three-label coding, gpt-4o-mini, names removed", fit("fail_2y ~ score_masked" + FE, e2), "score_masked")
+show("binary majority of the main score", fit("fail_2y ~ major" + FE, e2), "major"); print("    raw rates by majority:", e2.groupby("major").fail_2y.agg(["mean", "size"]).round(3).to_dict("index"))
+mb = fit("fail_2y ~ C(score_bin)" + FE, e2); print("    thirds vs low:", {k[-12:]: (round(v, 3), round(mb.pvalues[k], 2)) for k, v in mb.params.items() if "score_bin" in k})
+mq = fit("fail_2y ~ score + I(score**2)" + FE, e2); print("    quadratic term p:", round(mq.pvalues["I(score ** 2)"], 2))
+show("fail 3y", fit("fail_3y ~ score" + FE, e3)); mm = fit("fail_2y ~ score" + FE, e2); print("    main 95% CI:", mm.conf_int().loc["score"].round(3).tolist())
+show("with rating control", fit("fail_2y ~ score + rating_1y_notch" + FE, m_rt_d))
+from scipy import stats as _st
+_r = pr.dropna(subset=["rating_1y_notch"]); print("    rating vs score Spearman:", [round(v, 3) for v in _st.spearmanr(_r.score, _r.rating_1y_notch)], "n", len(_r))
+print("    pairwise correlations between the three models' scores:", a[[f"score2_{m}" for m in MODELS]].corr().round(2).values[np.triu_indices(3, 1)].tolist())
+_X = a[[f"score2_{m}" for m in MODELS]].dropna().values; _n, _k = _X.shape; _gm = _X.mean()
+_msr = _k * ((_X.mean(1) - _gm) ** 2).sum() / (_n - 1); _msc = _n * ((_X.mean(0) - _gm) ** 2).sum() / (_k - 1); _mse = ((_X - _X.mean(1, keepdims=True) - _X.mean(0, keepdims=True) + _gm) ** 2).sum() / ((_n - 1) * (_k - 1))
+print("    ICC(2,1):", round((_msr - _mse) / (_msr + (_k - 1) * _mse + _k * (_msc - _mse) / _n), 2), " ICC(2,k):", round((_msr - _mse) / (_msr + (_msc - _mse) / _n), 2))
+print("    main score vs earlier mixed-allowed score: r =", round(a[["score", "score3"]].corr().iloc[0, 1], 2), "| deals at exactly 0:", int((a.score == 0).sum()), "at exactly 1:", int((a.score == 1).sum()), "| each model unanimous:", [round(a[f"score2_{m}"].isin([0, 1]).mean(), 2) for m in MODELS])
+print("    2023 raw rates by majority:", e2[e2.year == 2023].groupby("major").fail_2y.agg(["mean", "size"]).round(2).to_dict("index"), "| 2020:", e2[e2.year == 2020].groupby("major").fail_2y.agg(["mean", "size"]).round(2).to_dict("index"))
+_ab = pt[pt.elig_2y == 1].dropna(subset=["strict_klk"]); show("H2 subsample: score alone", fit("fail_2y ~ score" + FE, _ab)); show("H2 subsample: score with strictness index", fit("fail_2y ~ score + strict_klk" + FE, _ab))
 m = fit("fail_2y ~ score + lme" + FE, pool2); show("pooled: LME coefficient", m, "lme")
 m = fit("fail_2y ~ score + lme" + FE, pool2[(pool2.lme == 0) | (pool2.sp_listed == 1)]); show("pooled, only LMEs in S&P tables: LME coefficient", m, "lme")
 m = fit("fail_2y ~ score * lme" + FE, pool2); show("pooled: score x LME interaction", m, "score:lme")

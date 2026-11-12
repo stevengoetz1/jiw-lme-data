@@ -413,46 +413,46 @@ wrote 7 tables to output/tables/thesis/
 03_prospectus_tables.py
 ================================================================================
 TABLE 2
-  Panel A Structural score (0--1)  ['+0.248 (p=0.023)', '+0.201 (p=0.169)', '+0.125 (p=0.108)', '+0.275 (p=0.005)']
-  Panel A LME                      ['', '', '', '+0.286 (p=0.013)']
-  Panel B Structural majority      ['+0.201 (p=0.018)', '+0.193 (p=0.086)', '+0.108 (p=0.068)', '+0.249 (p=0.001)']
-  Panel B LME                      ['', '', '', '+0.296 (p=0.005)']
+  Panel A Structural score (0--1)  ['+0.215 (p=0.020)', '+0.162 (p=0.211)', '+0.105 (p=0.125)', '+0.233 (p=0.004)']
+  Panel A LME                      ['', '', '', '+0.274 (p=0.019)']
+  Panel B Structural majority      ['+0.154 (p=0.069)', '+0.096 (p=0.414)', '+0.080 (p=0.175)', '+0.156 (p=0.031)']
+  Panel B LME                      ['', '', '', '+0.285 (p=0.016)']
   Panel C Mixed                    ['+0.125 (p=0.244)', '-0.073 (p=0.623)', '+0.061 (p=0.421)', '+0.059 (p=0.526)']
   Panel C Structural               ['+0.362 (p=0.001)', '+0.393 (p=0.016)', '+0.210 (p=0.014)', '+0.234 (p=0.013)']
   Panel C LME                      ['', '', '', '+0.301 (p=0.010)']
 
 TABLE 3
-  Main: continuous score                             +0.248 se 0.109 p 0.023 n 141
-  Score from text with company names removed         +0.157 se 0.112 p 0.158 n 141
-  First exchange per issuer only                     +0.348 se 0.134 p 0.009 n 108
-  Excluding open-market repurchases                  +0.211 se 0.117 p 0.072 n 107
-  Controlling for rating one year before the deal    +0.307 se 0.126 p 0.015 n 124
+  Main: structural score                             +0.215 se 0.092 p 0.020 n 141
+  Earlier score from codings that allowed ``mixed''  +0.248 se 0.109 p 0.023 n 141
+  First exchange per issuer only                     +0.246 se 0.117 p 0.035 n 108
+  Excluding open-market repurchases                  +0.218 se 0.105 p 0.038 n 107
+  Controlling for rating one year before the deal    +0.245 se 0.108 p 0.023 n 124
 
 TABLE 4 (H2), negotiated pro rata exchanges: 148
-  Haircut on principal                 share 0.46 coef +0.034 se 0.111 p 0.76 n 145
-  Debt converted to equity             share 0.21 coef -0.025 se 0.094 p 0.79 n 146
-  Controlling equity for lenders       share 0.13 coef -0.028 se 0.076 p 0.71 n 148
-  Board or governance rights           share 0.13 coef +0.001 se 0.080 p 0.99 n 137
-  Covenants tightened                  share 0.33 coef +0.250 se 0.133 p 0.06 n 103
-  New money ranking ahead              share 0.29 coef +0.042 se 0.100 p 0.67 n 139
-  Maturity extended                    share 0.68 coef -0.128 se 0.100 p 0.20 n 126
-  PIK interest                         share 0.59 coef +0.015 se 0.119 p 0.90 n 120
-  Extension or PIK only, no debt cut   share 0.51 coef -0.069 se 0.119 p 0.56 n 138
-  strictness index: coef +0.091 p 0.46; sd 0.51; smallest detectable shift (80% power) 0.34
+  Haircut on principal                 share 0.46 coef +0.002 se 0.102 p 0.99 n 145
+  Debt converted to equity             share 0.21 coef -0.039 se 0.084 p 0.64 n 146
+  Controlling equity for lenders       share 0.13 coef -0.037 se 0.068 p 0.59 n 148
+  Board or governance rights           share 0.13 coef -0.025 se 0.072 p 0.73 n 137
+  Covenants tightened                  share 0.33 coef +0.248 se 0.120 p 0.04 n 103
+  New money ranking ahead              share 0.29 coef +0.053 se 0.087 p 0.55 n 139
+  Maturity extended                    share 0.68 coef -0.057 se 0.092 p 0.54 n 126
+  PIK interest                         share 0.59 coef +0.037 se 0.107 p 0.73 n 120
+  Extension or PIK only, no debt cut   share 0.51 coef -0.030 se 0.109 p 0.78 n 138
+  strictness index: coef +0.056 p 0.60; sd 0.51; smallest detectable shift (80% power) 0.30
   two-year failure by relief type: {0.0: 0.51, 1.0: 0.29} (1 = debt cut)
 
 FIGURE 1 data
                        panel      group     form  fail_2y_pct  n
-(a) Structural score, thirds        Low Pro rata           32 44
-(a) Structural score, thirds     Middle Pro rata           13 15
-(a) Structural score, thirds       High Pro rata           49 82
-(a) Structural score, thirds        Low      LME           62  8
-(a) Structural score, thirds     Middle      LME           62 13
-(a) Structural score, thirds       High      LME           95 22
-   (b) Binary, majority wins      Shock Pro rata           28 54
-   (b) Binary, majority wins Structural Pro rata           47 87
-   (b) Binary, majority wins      Shock      LME           46 13
-   (b) Binary, majority wins Structural      LME           93 30
+(a) Structural score, thirds        Low Pro rata           29 42
+(a) Structural score, thirds     Middle Pro rata           45 11
+(a) Structural score, thirds       High Pro rata           44 88
+(a) Structural score, thirds        Low      LME           70 10
+(a) Structural score, thirds     Middle      LME           57  7
+(a) Structural score, thirds       High      LME           88 26
+   (b) Binary, majority wins      Shock Pro rata           30 46
+   (b) Binary, majority wins Structural Pro rata           44 95
+   (b) Binary, majority wins      Shock      LME           71 14
+   (b) Binary, majority wins Structural      LME           83 29
    (c) Original three labels      Shock Pro rata           28 36
    (c) Original three labels      Mixed Pro rata           31 42
    (c) Original three labels Structural Pro rata           52 63
@@ -460,20 +460,39 @@ FIGURE 1 data
    (c) Original three labels      Mixed      LME           67 12
    (c) Original three labels Structural      LME           86 22
 
+SPECTRUM FIGURE: yearly mean score
+year   2018   2019   2020   2021   2022   2023   2024   2025
+mean   0.68   0.67   0.58   0.65   0.76   0.69   0.72   0.74
+size  18.00  22.00  49.00  19.00  19.00  50.00  54.00  39.00
+
 EXTRA CHECKS (pro rata, two-year failure, year + industry fixed effects unless stated)
-  bankruptcy within 2y                                 +0.125 se 0.078 p 0.108 n 141
-  repeat exchange, no bankruptcy, within 2y            +0.123 se 0.097 p 0.207 n 141
-  excluding 2020                                       +0.231 se 0.136 p 0.090 n 101
-  vintage 2018-19 (no fixed effects)                   +0.127 se 0.185 p 0.490 n 36
-  vintage 2020 (no fixed effects)                      +0.313 se 0.167 p 0.060 n 40
-  vintage 2021-22 (no fixed effects)                   +0.468 se 0.200 p 0.020 n 29
-  vintage 2023 (no fixed effects)                      +0.064 se 0.241 p 0.790 n 35
-  score from gpt-4o-mini with names (masked baseline)  +0.183 se 0.113 p 0.107 n 141
-  score from gpt-4o-mini, names removed                +0.157 se 0.112 p 0.158 n 141
-  pooled: LME coefficient                              +0.286 se 0.115 p 0.013 n 184
-  pooled, only LMEs in S&P tables: LME coefficient     +0.278 se 0.114 p 0.015 n 159
-  pooled: score x LME interaction                      +0.240 se 0.204 p 0.240 n 184
-  share of score variation explained by year + industry fixed effects: 0.20
-  smallest detectable effect at 80% power, main model: 0.31
-  score vs rating one year before (all pro rata deals with a rating): Spearman rho = -0.11
+  bankruptcy within 2y                                 +0.105 se 0.069 p 0.125 n 141
+  repeat exchange, no bankruptcy, within 2y            +0.110 se 0.082 p 0.180 n 141
+  excluding 2020                                       +0.231 se 0.121 p 0.057 n 101
+  vintage 2018-19 (no fixed effects)                   +0.130 se 0.188 p 0.491 n 36
+  vintage 2020 (no fixed effects)                      +0.183 se 0.142 p 0.198 n 40
+  vintage 2021-22 (no fixed effects)                   +0.467 se 0.192 p 0.015 n 29
+  vintage 2023 (no fixed effects)                      +0.082 se 0.214 p 0.703 n 35
+  three-label coding, gpt-4o-mini with names           +0.183 se 0.113 p 0.107 n 141
+  three-label coding, gpt-4o-mini, names removed       +0.157 se 0.112 p 0.158 n 141
+  binary majority of the main score                    +0.154 se 0.085 p 0.069 n 141
+    raw rates by majority: {0.0: {'mean': 0.304, 'size': 46}, 1.0: {'mean': 0.442, 'size': 95}}
+    thirds vs low: {'(0.33-0.67)]': (0.157, np.float64(0.29)), 'gh (0.67-1)]': (0.175, np.float64(0.06))}
+    quadratic term p: 0.93
+  fail 3y                                              +0.162 se 0.130 p 0.211 n 106
+    main 95% CI: [0.034, 0.396]
+  with rating control                                  +0.245 se 0.108 p 0.023 n 124
+    rating vs score Spearman: [np.float64(-0.056), np.float64(0.511)] n 142
+    pairwise correlations between the three models' scores: [0.84, 0.8, 0.83]
+    ICC(2,1): 0.81  ICC(2,k): 0.93
+    main score vs earlier mixed-allowed score: r = 0.93 | deals at exactly 0: 44 at exactly 1: 142 | each model unanimous: [np.float64(0.84), np.float64(0.87), np.float64(0.84)]
+    2023 raw rates by majority: {0.0: {'mean': 0.36, 'size': 11}, 1.0: {'mean': 0.38, 'size': 24}} | 2020: {0.0: {'mean': 0.24, 'size': 17}, 1.0: {'mean': 0.35, 'size': 23}}
+  H2 subsample: score alone                            +0.218 se 0.105 p 0.038 n 107
+  H2 subsample: score with strictness index            +0.250 se 0.100 p 0.013 n 107
+  pooled: LME coefficient                              +0.274 se 0.117 p 0.019 n 184
+  pooled, only LMEs in S&P tables: LME coefficient     +0.265 se 0.116 p 0.022 n 159
+  pooled: score x LME interaction                      +0.152 se 0.178 p 0.394 n 184
+  share of score variation explained by year + industry fixed effects: 0.15
+  smallest detectable effect at 80% power, main model: 0.26
+  score vs rating one year before (all pro rata deals with a rating): Spearman rho = -0.06
   repurchases in the two-year pro rata sample: 34

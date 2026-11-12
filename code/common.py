@@ -24,6 +24,15 @@ def add_scores(cnt):
     return cnt
 
 
+def add_scores2(c2):
+    """Two-label score (main measure from 12 Nov 2026): share of the 70 shock-or-structural codings that say structural."""
+    c2 = c2.copy()
+    c2["score2"] = sum(c2[f"B2_{m}"] for m in MODELS) / sum(c2[f"A2_{m}"] + c2[f"B2_{m}"] for m in MODELS)
+    for m in MODELS:
+        c2[f"score2_{m}"] = c2[f"B2_{m}"] / (c2[f"A2_{m}"] + c2[f"B2_{m}"])
+    return c2
+
+
 def load_raw():
     deals = pd.read_csv(P("data", "clean", "lme_deals_clean.csv"), parse_dates=["deal_date", "bk_date", "fail_date"])
     terms = pd.read_csv(P("data", "clean", "lme_terms_clean.csv"), parse_dates=["deal_date"])
@@ -41,6 +50,10 @@ def build_sample(deals, cnt):
     sc["struct_major"] = np.where(sc.score.isna(), np.nan, (sc.score > 0.5).astype(float))
     sc["score_bin"] = pd.cut(sc.score, [-0.01, 1 / 3, 2 / 3, 1.0], labels=BINS)
     sc["bin_mid"] = (sc.score_bin == BINS[1]).astype(int); sc["bin_high"] = (sc.score_bin == BINS[2]).astype(int)
+    c2 = add_scores2(pd.read_csv(P("data", "coded", "llm_recoding_counts_binary.csv")))
+    sc = sc.merge(c2[["deal_id", "score2"] + [f"score2_{m}" for m in MODELS]], on="deal_id", how="left")
+    sc["struct_major2"] = np.where(sc.score2.isna(), np.nan, (sc.score2 > 0.5).astype(float))
+    sc["score2_bin"] = pd.cut(sc.score2, [-0.01, 1 / 3, 2 / 3, 1.0], labels=BINS)
     return sc
 
 
@@ -79,5 +92,6 @@ def load_scored():
     """Read the built analysis files (run 01_build_score.py first)."""
     sc = pd.read_csv(P("data", "analysis", "deals_scored.csv"), parse_dates=["deal_date", "bk_date", "fail_date"])
     sc["score_bin"] = pd.Categorical(sc.score_bin, categories=BINS, ordered=True)
+    sc["score2_bin"] = pd.Categorical(sc.score2_bin, categories=BINS, ordered=True)
     tm = pd.read_csv(P("data", "analysis", "terms_scored.csv"), parse_dates=["deal_date"])
     return sc, tm

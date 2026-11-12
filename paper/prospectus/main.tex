@@ -35,13 +35,13 @@
 \begin{titlepage}
 \centering
 \vspace*{1.6in}
-{\LARGE Does Runway Help?\\[6pt] Cause of Distress, Lender Screening, and the Outcomes of Distressed Exchanges\par}
+{\LARGE Buying Time, Missing the Signs:\\[6pt] Cause of Distress and Lender Response in Liability Management\par}
 \vspace{0.6in}
 {\large Junior Independent Work Prospectus\par}
 \vspace{0.6in}
 {\large Steven Goetz\par}
 \vspace{0.15in}
-{\large Adviser: Pablo Zarate\par}
+{\large Advisers: Professor Smita Brunnermeier and Pablo Zarate\par}
 \vspace{0.15in}
 {\large Department of Economics, Princeton University\par}
 \vspace{0.15in}
@@ -62,23 +62,23 @@
 \section{Introduction}
 % ---------------------------------------------------------------------
 
-When a company cannot pay its debts it can restructure in bankruptcy court or negotiate with its creditors outside it. Over the past decade the out-of-court route has taken a new form, the liability management exercise (LME): the borrower and a majority of its lenders rewrite the debt, usually extending maturities and adding new senior loans, and the firm avoids Chapter 11 for now. Supporters say the deal buys the firm ``runway'' to recover. The first systematic evidence says otherwise \citep{roerotaru2026}. In my coding of the LMEs in that study, 79\% of those old enough to judge ended in Chapter 11 bankruptcy or a second restructuring within two years.
+When a company cannot pay its debts it can restructure in bankruptcy court or negotiate with its creditors outside it. Over the past decade the out-of-court route has taken a new form, the liability management exercise (LME): the borrower and a majority of its lenders rewrite the debt, usually extending maturities and adding new senior loans, and the firm avoids Chapter 11 for now \citep{buccolanini2024}. Supporters say the deal buys the firm ``runway'' to recover. The first systematic evidence says otherwise \citep{roerotaru2026}. In my coding of the LMEs in that study, 79\% of those old enough to judge ended in Chapter 11 bankruptcy or a second restructuring within two years.
 
-Two kinds of deal appear in this paper, and the difference matters throughout. In a \emph{pro rata} exchange every lender in a class of debt is offered the same trade. In a \emph{non-pro rata} LME the borrower and a majority of its lenders amend the loan contract so that the participating lenders move ahead of the others in the line for repayment. The deal is called \emph{coercive} because a lender who declines is left with a weaker claim. Many of these borrowers are owned by private equity firms, or \emph{sponsors}, whose equity is worth something only while the firm stays out of bankruptcy. Exchanges of both kinds are common. Together they were half of the 548 U.S.\ corporate defaults that S\&P recorded from 2018 to 2025.
+Two kinds of deal appear in this paper, and the difference matters throughout. In a \emph{pro rata} exchange every lender in a class of debt is offered the same trade. In a \emph{non-pro rata} LME the borrower and a majority of its lenders amend the loan contract so that the participating lenders move ahead of the others in the line for repayment \citep{roerotaru2026}. The deal is called \emph{coercive} because a lender who declines is left with a weaker claim \citep{buccolakahan2025}. Many of these borrowers are owned by private equity firms, or \emph{sponsors}, whose equity is worth something only while the firm stays out of bankruptcy \citep{buccola2023}. Exchanges of both kinds are common. Together they were half of the 548 U.S.\ corporate defaults that S\&P recorded from 2018 to 2025 \citep{spdefault}.
 
 That evidence treats every distressed firm as the same kind of patient. Consider a cruise line in 2020, whose customers disappeared for a year, and a floppy disk manufacturer, whose customers are never coming back. Both may be unable to pay their debts and both may sign the same deal, but time can only help the first. Corporate finance has long drawn this line between \emph{financial} distress, a sound business with too much debt, and \emph{economic} distress, a business that has lost its value \citep{wruck1990, andrade1998}. It has not been applied to modern exchanges.
 
 This paper asks two questions. First, does the outcome of a distressed exchange depend on the cause of the borrower's distress, a temporary shock versus a structural decline of the business? Second, do the lenders whose consent the exchange requires write different terms depending on that cause?
 
-The questions matter because the alternative to an exchange is costly and the exchange is not free. A firm that restructures out of court and then fails pays for distress twice. The policy debate is whether courts and contracts should restrain these deals. If they fail mainly for one identifiable kind of firm, the remedy is better screening of who gets one, not a ban.
+The questions matter because the alternative to an exchange is costly \citep{antill2026} and the exchange is not free \citep{elkamhi2024}. A firm that restructures out of court and then fails pays for distress twice. The policy debate is whether courts and contracts should restrain these deals \citep{ellias2020, buccolakahan2025}. If they fail mainly for one identifiable kind of firm, the remedy is better screening of who gets one, not a ban.
 
-The contribution is threefold. I build a continuous measure of the cause of distress for 275 U.S.\ exchanges from rating-agency text published before each deal. I use it to give what is, to my knowledge, the first estimate of post-exchange outcomes conditional on cause. And I observe the terms lenders accept at the exchange itself, where prior work observes their response in the contracts of new loans. The design describes for which firms failure follows an exchange. It does not identify whether the exchange beat Chapter 11 for a given firm. The data are already assembled.
+The contribution is threefold. I build a continuous measure of the cause of distress for 275 U.S.\ exchanges from rating-agency text published before each deal. I use it to give what is, to my knowledge, the first estimate of post-exchange outcomes conditional on cause. And I observe the terms lenders accept at the exchange itself, where prior work observes their response in the contracts of new loans \citep{buccolanini2024, badawi2024, ivashina2025}. The design describes for which firms failure follows an exchange. It does not identify whether the exchange beat Chapter 11 for a given firm. The data are already assembled.
 
 % ---------------------------------------------------------------------
 \section{Literature Review}
 % ---------------------------------------------------------------------
 
-Four literatures bear on the question, and none joins outcomes to cause.
+Whether an out-of-court exchange is worth doing depends on what it costs relative to bankruptcy, on who is pushing for it, and on whether lenders can tell which borrowers will use the time well. Prior work studies each of these in isolation. None of it asks whether the answer depends on why the firm is distressed, which an older literature on classifying distress gives me the tools to measure.
 
 \emph{Outcomes.} Whether an exchange is worth doing depends on what it avoids. \citet{antill2026} show experimentally that learning of a Chapter 11 filing cuts consumers' willingness to pay by 17--28\%, a cost that arrives only at the filing. But \citet{elkamhi2024} estimate that roughly 64\% of distress costs accrue \emph{before} default. The two findings measure different costs at different moments, so an exchange avoids the first and prolongs the second, and it pays only if it ends the distress. \citet{roerotaru2026} find that coercive LMEs usually do not. \citet{harmon2026} reaches a similar conclusion from trading prices, but on 16 deals, which is consistent with their result rather than independent confirmation of it. Both studies pool firms.
 
@@ -99,33 +99,35 @@ Fifty-four of the 89 LMEs also appear in S\&P's tables. Most of the other 35 add
 
 \paragraph{Outcome.} A deal \emph{fails} if the firm files for bankruptcy or completes another distressed exchange. I measure failure within one, two and three years, using the LME study's coding for LMEs and S\&P's later default records, checked against court dockets, for pro rata deals. A deal enters the $h$-year sample only if it closed at least $h$ years before the data cutoff of 14 January 2026, so recent deals are not counted as survivors merely because they are young. Failure therefore combines two events. I also report them separately, because a second exchange can be a planned next step rather than a breakdown \citep{kahl2002}.
 
-\paragraph{Cause of distress.} For each deal I collect the S\&P and Moody's rating-action text from the twelve months before it, together with the agencies' description of the two-year earnings trend. A written codebook assigns one of three labels: shock (a temporary demand or financial shock to an intact business), structural (secular industry decline, firm-specific deterioration, or a legal or regulatory blow), or mixed. The rules are fixed in advance and code the driver the agency \emph{names}, not its outlook for the firm. A temporary shock is still an operating problem, so the labels are not financial against economic distress. They capture how persistent the agencies judge the operating damage to be, which is the dimension on which runway should matter.
+\paragraph{Cause of distress.} For each deal I collect the S\&P and Moody's rating-action text from the twelve months before it, together with the agencies' description of the two-year earnings trend. A written codebook defines two causes: shock (a temporary demand or financial shock to an intact business) and structural (secular industry decline, firm-specific deterioration, or a legal or regulatory blow). The rules are fixed in advance and code the driver the agency \emph{names}, not its outlook for the firm. A temporary shock is still an operating problem, so the labels are not financial against economic distress. They capture how persistent the agencies judge the operating damage to be, which is the dimension on which runway should matter.
 
-The mixed label is a judgment call, so the main measure is continuous rather than the labels themselves. Each deal is coded 70 times by three OpenAI language models (30 runs each of two smaller models and 10 of a larger one) that see only the pre-deal text and the codebook, never the deal type or the outcome. The \emph{structural score} is the share of those codings that are structural, counting a mixed coding as one half. It runs from 0 (every coding says shock) to 1 (every coding says structural). Two deals have no agency text, leaving 275 scored deals (87 LMEs and 188 pro rata).
+Many firms show some of both, and sorting them by hand into a third ``mixed'' group is a judgment call, so I do not use a mixed category. Each deal is coded 70 times by three OpenAI language models (30 runs each of two smaller models and 10 of a larger one) that see only the pre-deal text and the codebook, never the deal type or the outcome, and each coding must choose shock or structural. The \emph{structural score} is the share of the 70 codings that say structural. It runs from 0 (every coding says shock) to 1 (every coding says structural). Repeated coding by language models is an established way to label text \citep{gilardi2023}, and its validity here rests on the checks below. An earlier round of coding assigned each deal one of three labels, shock, mixed or structural. I keep those labels, and a score built from codings that allowed a mixed answer, as alternative measures. Two deals have no agency text, leaving 275 scored deals (87 LMEs and 188 pro rata).
 
-Revlon in 2020 shows the middle of the scale. Its rating text names the pandemic on top of years of declining sales, and the coders split (score 0.51).
+Steak n Shake's 2020 exchange shows how the score is built. Its rating text names the pandemic's disruption of restaurants on top of years of weak operating performance. Of the 70 codings, 58 say structural and 12 say shock, so its score is $58/70 = 0.83$. Figure~\ref{fig:spectrum} places every deal on the scale by date. Most deals sit at one end: in 186 of the 275, all 70 codings agree, so a score in between marks a deal the coders disagree on. The average dips in 2020, when the pandemic put otherwise sound firms into distress.
+
+\input{tables/fig_spectrum}
 
 \paragraph{Terms.} For the 242 exchanges S\&P records, I code what lenders gave and got from the agencies' default releases. The terms fall into three groups. \emph{Balance-sheet repair} reduces what the firm owes: a \emph{haircut} (principal is written down) or conversion of debt into equity. \emph{Lender control} gives creditors power over the firm: a controlling equity stake, board rights, tighter \emph{covenants} (contract limits on what the borrower may do), or new loans that rank ahead of existing debt. \emph{Runway} gives time without reducing debt: a maturity extension, or \emph{payment-in-kind} (PIK) interest, paid in more debt instead of cash. Forty of the pro rata deals and two LMEs are open-market repurchases, in which the firm buys back its own debt below face value from willing sellers. They carry no negotiated terms, so the terms analysis uses the other 200 exchanges, 148 of them pro rata.
 
 \input{tables/sumstats}
 
-Table~\ref{tab:sumstats} summarises the data. The score is bimodal: 60\% of deals lie in the top third and 26\% in the bottom third. Failure is common, 40\% of pro rata exchanges and 79\% of LMEs within two years, so the outcome has ample variation.
+Table~\ref{tab:sumstats} summarises the data. The score is bimodal: 64\% of deals lie in the top third and 28\% in the bottom third. Failure is common, 40\% of pro rata exchanges and 79\% of LMEs within two years, so the outcome has ample variation.
 
-Three features of the measure bear on its credibility. First, agreement among coders is high: the three models' scores correlate 0.84--0.86 with one another and the intraclass correlation of their average is 0.94 \citep{koo2016}. Second, the models were trained after many of these outcomes were known, so they might be recalling which firms failed. Re-coding with company names removed barely changes the score (correlation 0.95) or the estimate from that model (0.16 against 0.18). Third, the quotations each coder reads were selected in a first pass by a language-model assistant, so the agreement is an upper bound. A human-coded subsample from the full rating reports addresses this (Section~\ref{sec:next}).
+Three features of the measure bear on its credibility. First, agreement among coders is high: the three models' scores correlate 0.80--0.84 with one another and the intraclass correlation of their average is 0.93 \citep{koo2016}. Second, the models were trained after many of these outcomes were known, so they might be recalling which firms failed. In the earlier round of coding, removing company names barely changed the score (correlation 0.95) or the estimate from that model (0.16 against 0.18). Third, the quotations each coder reads were selected in a first pass by a language-model assistant, so the agreement is an upper bound. A human-coded subsample from the full rating reports addresses this (Section~\ref{sec:next}).
 
 % ---------------------------------------------------------------------
 \section{Methodology}
 \label{sec:method}
 % ---------------------------------------------------------------------
 
-\paragraph{Hypotheses.} \emph{H1 (outcomes):} failure after an exchange rises with the structural score, $\beta > 0$ in equation~\eqref{eq:main}. Debt overhang theory predicts that an exchange can cure a sound firm with too much debt but not a declining business. H1 is rejected if $\beta$ is zero or negative, or if it disappears once the firm's prior rating is held fixed, which would mean the score only restates default risk. \emph{H2 (screening):} lenders who act on the diagnosis give high-score borrowers more lender control and less pure runway. For balance-sheet repair the prediction is two-sided. Overhang theory says a debt cut helps the sound firm most, while a lender facing a declining firm may prefer equity to an extension. The null is that terms follow the form and year of the deal and not the diagnosis.
+\paragraph{Hypotheses.} \emph{H1 (outcomes):} failure after an exchange rises with the structural score, $\beta > 0$ in equation~\eqref{eq:main}. Debt overhang theory predicts that an exchange can cure a sound firm with too much debt but not a declining business \citep{myers1977}. H1 is rejected if $\beta$ is zero or negative, or if it disappears once the firm's prior rating is held fixed, which would mean the score only restates default risk. \emph{H2 (screening):} lenders who act on the diagnosis give high-score borrowers more lender control and less pure runway. For balance-sheet repair the prediction is two-sided. Overhang theory says a debt cut helps the sound firm most, while a lender facing a declining firm may prefer equity to an extension. The null is that terms follow the form and year of the deal and not the diagnosis.
 
 \paragraph{Specification.} For H1 I estimate a linear probability model on deals observed for at least $h$ years,
 \begin{equation}
 \text{Fail}_{i,h} = \alpha + \beta\,\text{Score}_i + \gamma_{t(i)} + \delta_{j(i)} + \varepsilon_i ,
 \label{eq:main}
 \end{equation}
-where $\gamma_t$ and $\delta_j$ are deal-year and industry fixed effects (S\&P's eleven industry groups) and standard errors are clustered by issuer, since some firms exchange more than once. $\beta$ is the difference in failure probability between a firm every coder calls structural and one every coder calls shock, in the same year and industry. The fixed effects matter because shocks cluster in 2020 and structural decline clusters in a few industries. They explain a fifth of the variation in the score, so most of what identifies $\beta$ is variation within a year and an industry. I estimate the model for pro rata exchanges, where deal form is held fixed, and then pool with an LME indicator, which asks whether deal form matters once cause is held fixed. For H2 the dependent variable is each term in turn. Because that is many tests, the single pre-specified test is a strictness index, the average of the standardised terms signed so that higher is tougher on the borrower \citep{kling2007}.
+where $\gamma_t$ and $\delta_j$ are deal-year and industry fixed effects (S\&P's eleven industry groups) and standard errors are clustered by issuer, since some firms exchange more than once. $\beta$ is the difference in failure probability between a firm every coder calls structural and one every coder calls shock, in the same year and industry. The fixed effects matter because shocks cluster in 2020 and structural decline clusters in a few industries. They explain about a sixth of the variation in the score, so most of what identifies $\beta$ is variation within a year and an industry. I estimate the model for pro rata exchanges, where deal form is held fixed, and then pool with an LME indicator, which asks whether deal form matters once cause is held fixed. For H2 the dependent variable is each term in turn. Because that is many tests, the single pre-specified test is a strictness index, the average of the standardised terms signed so that higher is tougher on the borrower \citep{kling2007}.
 
 The data are a cross-section of deals, not a panel, and $\beta$ is not the effect of an exchange. Structural firms may fail more with or without one, and I have no firm-level counterfactual. $\beta$ measures for which firms failure follows an exchange, which is what a lender asked to grant one needs to know. Four threats to reading it as the effect of cause follow, with the planned response to each.
 
@@ -135,14 +137,14 @@ The data are a cross-section of deals, not a panel, and $\beta$ is not the effec
 
 \paragraph{Vintage.} Shock-driven distress clusters in 2020, and credit conditions differ by year. Year fixed effects absorb common shocks, and I report $\beta$ separately by vintage and with 2020 excluded. The firms hit in 2020 were also helped by an unusually fast reopening of credit markets, so I put more weight on the by-vintage estimates than on the pooled one.
 
-\paragraph{Functional form and power.} Equation~\eqref{eq:main} assumes failure is linear in the score. I test this with three bins of the score and a quadratic term. With 141 pro rata deals observable at two years, the smallest effect detectable with 80\% power is about 31 percentage points, which is larger than the preliminary estimate in Section~\ref{sec:results}. A significant estimate in a sample this size tends to overstate the truth, and insignificant results will be reported as imprecise rather than as zeros. For H2 the smallest detectable shift in the strictness index is 0.34, two thirds of its standard deviation, so the test can rule out strong screening but not mild screening.
+\paragraph{Functional form and power.} Equation~\eqref{eq:main} assumes failure is linear in the score. I test this with three bins of the score and a quadratic term. With 141 pro rata deals observable at two years, the smallest effect detectable with 80\% power is about 26 percentage points, which is larger than the preliminary estimate in Section~\ref{sec:results}. A significant estimate in a sample this size tends to overstate the truth, and insignificant results will be reported as imprecise rather than as zeros. For H2 the smallest detectable shift in the strictness index is 0.30, about three fifths of its standard deviation, so the test can rule out strong screening but not mild screening.
 
 % ---------------------------------------------------------------------
 \section{Preliminary and Expected Results}
 \label{sec:results}
 % ---------------------------------------------------------------------
 
-\paragraph{H1.} Figure~\ref{fig:bins} and Table~\ref{tab:reg_part1} report preliminary estimates. After a pro rata exchange, moving from a score of 0 to 1 raises two-year failure by 25 percentage points ($p = 0.02$; 95\% confidence interval 3 to 46). The binary version gives 20 points, and under the original three labels structural deals fail 36 points more often than shock deals (panels B and C). LMEs fail more often at every score, by 29 points in the pooled model and by 28 when I keep only the LMEs that S\&P also records as defaults.
+\paragraph{H1.} Figure~\ref{fig:bins} and Table~\ref{tab:reg_part1} report preliminary estimates. After a pro rata exchange, a deal that every coding calls structural is 22 percentage points more likely to fail within two years than one every coding calls shock ($p = 0.02$; 95\% confidence interval 3 to 40). The binary version gives 15 points ($p = 0.07$), and under the original three labels structural deals fail 36 points more often than shock deals (panels B and C). LMEs fail more often at every score, by 27 points in the pooled model and by 26 when I keep only the LMEs that S\&P also records as defaults.
 
 \begin{figure}[H]
 \centering
@@ -154,12 +156,12 @@ The data are a cross-section of deals, not a panel, and $\beta$ is not the effec
   nodes near coords, nodes near coords style={font=\scriptsize},
   ymajorgrids, grid style={gray!25}, axis lines*=left, tick style={draw=none}]
 \nextgroupplot[width=0.40\textwidth, symbolic x coords={Low,Middle,High}, xlabel={(a) Structural score, thirds}]
-\addplot[fill=blue!55!black!70, draw=none] coordinates {(Low,32) (Middle,13) (High,49)};
-\addplot[fill=red!65!black!60, draw=none] coordinates {(Low,62) (Middle,62) (High,95)};
+\addplot[fill=blue!55!black!70, draw=none] coordinates {(Low,29) (Middle,45) (High,44)};
+\addplot[fill=red!65!black!60, draw=none] coordinates {(Low,70) (Middle,57) (High,88)};
 \nextgroupplot[width=0.32\textwidth, symbolic x coords={Shock,Structural}, xlabel={(b) Binary, majority wins}, enlarge x limits=0.5,
   legend style={at={(0.5,1.04)}, anchor=south, draw=none, font=\footnotesize, legend columns=2, /tikz/every even column/.append style={column sep=8pt}}]
-\addplot[fill=blue!55!black!70, draw=none] coordinates {(Shock,28) (Structural,47)};
-\addplot[fill=red!65!black!60, draw=none] coordinates {(Shock,46) (Structural,93)};
+\addplot[fill=blue!55!black!70, draw=none] coordinates {(Shock,30) (Structural,44)};
+\addplot[fill=red!65!black!60, draw=none] coordinates {(Shock,71) (Structural,83)};
 \legend{Pro rata exchanges, LMEs}
 \nextgroupplot[width=0.40\textwidth, symbolic x coords={Shock,Mixed,Structural}, xlabel={(c) Original three labels}]
 \addplot[fill=blue!55!black!70, draw=none] coordinates {(Shock,28) (Mixed,31) (Structural,52)};
@@ -169,22 +171,22 @@ The data are a cross-section of deals, not a panel, and $\beta$ is not the effec
 \caption{Two-year failure rate by cause of distress and deal form}
 \label{fig:bins}
 \begin{minipage}{0.95\textwidth}\vspace{2pt}\footnotesize
-\textit{Notes.} Deals observed for two years. Pro rata $n$: (a) 44,~15,~82; (b) 54,~87; (c) 36,~42,~63. LME $n$: (a) 8,~13,~22; (b) 13,~30; (c) 9,~12,~22.
+\textit{Notes.} Deals observed for two years. Pro rata $n$: (a) 42,~11,~88; (b) 46,~95; (c) 36,~42,~63. LME $n$: (a) 10,~7,~26; (b) 14,~29; (c) 9,~12,~22.
 \end{minipage}
 \end{figure}
 
-Table~\ref{tab:robust} varies the measure and the sample. The estimate is positive in every row, from 0.16 to 0.35, though not always significant. It is not explained by prior credit quality. The score is only weakly related to the rating a year earlier ($\rho = -0.11$, $p = 0.18$), and controlling for that rating gives 0.31. Without the open-market repurchases it is 0.21 ($p = 0.07$).
+Table~\ref{tab:robust} varies the measure and the sample. The estimate is positive and significant in every row, between 0.21 and 0.25. It is not explained by prior credit quality. The score is unrelated to the rating a year earlier ($\rho = -0.06$, $p = 0.51$), and controlling for that rating gives 0.25. Without the open-market repurchases, which need no lender consent, it is 0.22 ($p = 0.04$).
 
 \input{tables/reg_part1}
 
 \input{tables/robust}
 
-Three results temper this. First, the estimate is not significant at three years, and the two parts of failure share it about equally: 0.13 for bankruptcy ($p = 0.11$) and 0.12 for a repeat exchange with no bankruptcy ($p = 0.21$). If a second exchange is a planned step, as in \citet{kahl2002}, only the first half is failure. Second, the relationship is not cleanly linear. The 15 deals in the middle of the scale failed least (13\%), though a quadratic term is not significant and the group is too small to interpret. Third, the gradient is concentrated in the 2020 and 2021--22 deals (0.31 and 0.47). It is small in 2018--19 (0.13) and absent in the 35 deals from 2023 (39\% against 40\%). I still expect a positive final estimate, because the mechanism has theory and earlier evidence behind it, but the 2023 result means H1 could fail as later deals mature.
+Three results temper this. First, the estimate is not significant at three years, and the two parts of failure share it about equally: 0.11 for bankruptcy ($p = 0.13$) and 0.11 for a repeat exchange with no bankruptcy ($p = 0.18$). If a second exchange is a planned step, as in \citet{kahl2002}, only the first half is failure. Second, the relationship is closer to a step than a line. Failure is 29\% in the bottom third of the score and about 44\% in both the middle and top thirds, though only 11 deals fall in the middle. Third, the gradient is concentrated in the 2021--22 deals (0.47). It is smaller in 2018--19 and 2020 (0.13 and 0.18) and absent in the 35 deals from 2023 (38\% against 36\%). I still expect a positive final estimate, because the mechanism has theory and earlier evidence behind it, but the 2023 result means H1 could fail as later deals mature.
 
 I see two readings of the 2023 result, and they predict different things. The shock behind that vintage was the 2022--23 rise in interest rates on floating-rate loans, which is a problem of leverage more than of operations and did not reverse the way a lockdown did. If that is right, the gradient should return once I code rate-driven distress separately. The second reading is timing: failures often arrive after two years, so the gradient should appear at three.
 
 
-\paragraph{H2.} Table~\ref{tab:h2} reports the tests, and the preliminary results favour the null. The strictness index rises by 0.09 across the score ($p = 0.46$). Of the lender-control terms only covenant tightening moves ($+0.25$, $p = 0.06$), and one marginal result in nine is about what chance would produce. Pure runway is no less common for high-score borrowers ($-0.07$, $p = 0.56$). These are imprecise nulls and not zeros, because mild screening would go undetected.
+\paragraph{H2.} Table~\ref{tab:h2} reports the tests, and the preliminary results favour the null. The strictness index rises by 0.06 across the score ($p = 0.60$). Of the lender-control terms only covenant tightening moves ($+0.25$, $p = 0.04$), and one significant result in nine is about what chance would produce. Pure runway is no less common for high-score borrowers ($-0.03$, $p = 0.78$). These are imprecise nulls and not zeros, because mild screening would go undetected.
 
 I expect the null to hold, for two reasons. Loan terms have been found to spread by convention rather than by pricing \citep{badawi2024}, and the lenders who design an exchange are negotiating mainly over their position against other creditors, which depends on the contract and not on why the firm is distressed. If H2 is instead supported in the final data, the reading changes: lenders do screen, and the high failure rate of structural firms is a risk they priced. Terms do matter for outcomes: deals that cut debt fail at 29\% against 51\% for deals that only extend it.
 
@@ -200,19 +202,19 @@ I expect the null to hold, for two reasons. Loan terms have been found to spread
  & Share & Predicted & Coef.\ on score & $p$ & $n$ \\
 \midrule
 \textit{Balance-sheet repair} & & & & & \\
-\quad Haircut on principal & 46\% & $\pm$ & 0.03 & 0.76 & 145 \\
-\quad Debt converted to equity & 21\% & $\pm$ & $-0.03$ & 0.79 & 146 \\
+\quad Haircut on principal & 46\% & $\pm$ & 0.00 & 0.99 & 145 \\
+\quad Debt converted to equity & 21\% & $\pm$ & $-0.04$ & 0.64 & 146 \\
 \textit{Lender control} & & & & & \\
-\quad Controlling equity for lenders & 13\% & $+$ & $-0.03$ & 0.71 & 148 \\
-\quad Board or governance rights & 13\% & $+$ & 0.00 & 0.99 & 137 \\
-\quad Covenants tightened & 33\% & $+$ & 0.25 & 0.06 & 103 \\
-\quad New money ranking ahead & 29\% & $+$ & 0.04 & 0.67 & 139 \\
+\quad Controlling equity for lenders & 13\% & $+$ & $-0.04$ & 0.59 & 148 \\
+\quad Board or governance rights & 13\% & $+$ & $-0.02$ & 0.73 & 137 \\
+\quad Covenants tightened & 33\% & $+$ & 0.25 & 0.04 & 103 \\
+\quad New money ranking ahead & 29\% & $+$ & 0.05 & 0.55 & 139 \\
 \textit{Runway} & & & & & \\
-\quad Maturity extended & 68\% & $-$ & $-0.13$ & 0.20 & 126 \\
-\quad PIK interest & 59\% & $-$ & 0.02 & 0.90 & 120 \\
-\quad Extension or PIK only, no debt cut & 51\% & $-$ & $-0.07$ & 0.56 & 138 \\
+\quad Maturity extended & 68\% & $-$ & $-0.06$ & 0.54 & 126 \\
+\quad PIK interest & 59\% & $-$ & 0.04 & 0.73 & 120 \\
+\quad Extension or PIK only, no debt cut & 51\% & $-$ & $-0.03$ & 0.78 & 138 \\
 \addlinespace
-Strictness index (pre-specified test) & & $+$ & 0.09 & 0.46 & 148 \\
+Strictness index (pre-specified test) & & $+$ & 0.06 & 0.60 & 148 \\
 \bottomrule
 \end{tabular}
 \begin{minipage}{0.92\textwidth}\vspace{4pt}\footnotesize

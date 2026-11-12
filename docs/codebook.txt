@@ -71,3 +71,13 @@ One row per negotiated exchange (200). All columns of lme_terms_clean.csv, plus 
   strict_klk       strictness index (mean of standardised terms, higher = tougher on the borrower; pro rata deals only)
   fix              1 = haircut or equitisation
   runway_only      1 = extension or PIK with no debt cut
+
+============================================================
+data/coded/llm_recoding_counts_binary.csv  (added 2026-11-12)
+============================================================
+Two-label re-coding: the same inputs, models and run counts as llm_recoding_counts.csv (gpt-4o-mini 30, gpt-4.1-mini 30,
+gpt-4o 10, temperature 1), but the coder must answer shock (A) or structural (B); there is no mixed option.
+  A2_<model>, B2_<model> = number of runs landing on each group (they sum to the model's run count)
+  two-label score = (sum of B2 columns) / 70
+Produced by "Part 5" of the JIW Database Colab notebook; per-run output with rationales is llm_codes_binary.csv in that Colab session.
+  score2, struct_major2, score2_bin   (in deals_scored.csv) two-label structural score, its binary version and thirds; the prospectus's main measure
