@@ -1,0 +1,17 @@
+panel,group,form,fail_2y_pct,n
+"(a) Structural score, thirds",Low,Pro rata,32,44
+"(a) Structural score, thirds",Middle,Pro rata,13,15
+"(a) Structural score, thirds",High,Pro rata,49,82
+"(a) Structural score, thirds",Low,LME,62,8
+"(a) Structural score, thirds",Middle,LME,62,13
+"(a) Structural score, thirds",High,LME,95,22
+"(b) Binary, majority wins",Shock,Pro rata,28,54
+"(b) Binary, majority wins",Structural,Pro rata,47,87
+"(b) Binary, majority wins",Shock,LME,46,13
+"(b) Binary, majority wins",Structural,LME,93,30
+(c) Original three labels,Shock,Pro rata,28,36
+(c) Original three labels,Mixed,Pro rata,31,42
+(c) Original three labels,Structural,Pro rata,52,63
+(c) Original three labels,Shock,LME,78,9
+(c) Original three labels,Mixed,LME,67,12
+(c) Original three labels,Structural,LME,86,22

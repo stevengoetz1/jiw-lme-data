@@ -1,0 +1,24 @@
+\begin{table}[H]
+\centering
+\caption{The structural score under alternative constructions}
+\label{tab:robust}
+\small
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{l r r r r}
+\toprule
+Specification & Coefficient & Std.\ error & $p$ & $n$ \\
+\midrule
+Main: continuous score & 0.248$^{**}$ & 0.109 & 0.023 & 141 \\
+\addlinespace
+Score from text with company names removed & 0.157$^{}$ & 0.112 & 0.158 & 141 \\
+\addlinespace
+First exchange per issuer only & 0.348$^{***}$ & 0.134 & 0.009 & 108 \\
+Excluding open-market repurchases & 0.211$^{*}$ & 0.117 & 0.072 & 107 \\
+Controlling for rating one year before the deal & 0.307$^{**}$ & 0.126 & 0.015 & 124 \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\begin{minipage}{0.95\textwidth}\vspace{4pt}\footnotesize
+\textit{Notes.} Dependent variable: failure within two years of a pro rata exchange. Each row is a separate linear probability model with year and industry fixed effects unless stated, standard errors clustered by issuer; the coefficient shown is on the cause measure named in the row. $^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01.
+\end{minipage}
+\end{table}
