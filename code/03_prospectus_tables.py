@@ -52,6 +52,7 @@ m_rt_d = e2[e2.rating_1y_notch.notna()]
 ROB = [("Main: structural score", fit("fail_2y ~ score" + FE, e2), "score", True),
        ("Earlier score from codings that allowed ``mixed''", fit("fail_2y ~ score3" + FE, e2), "score3", True),
        ("First exchange per issuer only", fit("fail_2y ~ score" + FE, e2[e2.first_for_issuer == 1]), "score", False),
+       ("Excluding deals coded without quoted agency text", fit("fail_2y ~ score" + FE, e2[e2.no_quote == 0]), "score", False),
        ("Excluding open-market repurchases", fit("fail_2y ~ score" + FE, e2[e2.repurchase == 0]), "score", False),
        ("Controlling for rating one year before the deal", fit("fail_2y ~ score + rating_1y_notch" + FE, m_rt_d), "score", False)]
 L = [r"\begin{table}[H]", r"\centering", r"\caption{The structural score under alternative constructions}", r"\label{tab:robust}", r"\small", r"\begin{adjustbox}{max width=\textwidth}",
@@ -133,8 +134,8 @@ print("\nFIGURE 1 data"); print(fd.to_string(index=False))
 # ------------------------------------------------------------------ Figure: every deal on the 0-1 scale, by deal date
 a["t"] = a.deal_date.dt.year + (a.deal_date.dt.dayofyear - 1) / 365
 LAB = [("J. Crew", 2017, 90, "J. Crew"), ("Chesapeake", 2019, 250, "Chesapeake"), ("Serta", 2020, 150, "Serta"), ("Steak n Shake", 2020, 200, "Steak n Shake"),
-       ("Travelport", 2020, 290, "Travelport"), ("Bed Bath", 2022, 90, "Bed Bath \\& Beyond"), ("Shutterfly", 2023, 180, "Shutterfly"), ("WeWork", 2023, 270, "WeWork"),
-       ("Lumen", 2024, 35, "Lumen"), ("AMC Entertainment", 2024, 270, "AMC")]        # (company, year, pin angle, text): up to ten well-known deals
+       ("Travelport", 2020, 290, "Travelport"), ("TriMark", 2020, 0, "TriMark"), ("Bed Bath", 2022, 90, "Bed Bath \\& Beyond"), ("Shutterfly", 2023, 180, "Shutterfly"),
+       ("Securus", 2023, 340, "Aventiv"), ("Lumen", 2024, 35, "Lumen"), ("AMC Entertainment", 2024, 270, "AMC")]        # (company, year, pin angle, text): well-known deals
 co = lambda d: " ".join(f"({t:.3f},{y:.3f})" for t, y in zip(d.t, d.score))
 ym = a.groupby("year").score.agg(["mean", "size"]); ym = ym[ym["size"] >= 15]
 F = [r"\begin{figure}[H]", r"\centering", r"\begin{tikzpicture}",

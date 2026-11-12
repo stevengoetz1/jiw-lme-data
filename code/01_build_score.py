@@ -14,6 +14,7 @@ rep = terms[terms.negotiated == 0][["company", "deal_date"]].assign(repurchase=1
 sc = sc.merge(rep, on=["company", "deal_date"], how="left"); sc["repurchase"] = sc.repurchase.fillna(0).astype(int)
 sc["sp_listed"] = sc.sp_name.notna().astype(int)                                       # deal appears in S&P's default tables
 sc["needs_review"], sc["review_reason"] = review_flags(sc, terms, inputs)
+sc["no_quote"] = sc.review_reason.str.contains("without any quoted agency text").astype(int)
 sc.to_csv(P("data", "analysis", "deals_scored.csv"), index=False)
 
 neg = terms[terms.negotiated == 1].merge(sc[["company", "deal_date", "deal_id", "score", "score_bin", "struct_major", "score2", "score2_bin", "struct_major2"]], on=["company", "deal_date"], how="left")

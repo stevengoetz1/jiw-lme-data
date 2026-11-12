@@ -3,8 +3,9 @@
 ================================================================================
 deals_scored.csv: 277 deals, 275 scored (89 LME, 188 pro rata)
   open-market repurchases: 40;  LMEs also in S&P tables: 54
-  rows flagged needs_review: 27
+  rows flagged needs_review: 41
 review_reason
+scored without any quoted agency text          26
 cause code marked GUESS                        12
 no quotable agency source                      12
 cause code low confidence                      10
@@ -425,6 +426,7 @@ TABLE 3
   Main: structural score                             +0.215 se 0.092 p 0.020 n 141
   Earlier score from codings that allowed ``mixed''  +0.248 se 0.109 p 0.023 n 141
   First exchange per issuer only                     +0.246 se 0.117 p 0.035 n 108
+  Excluding deals coded without quoted agency text   +0.235 se 0.092 p 0.011 n 129
   Excluding open-market repurchases                  +0.218 se 0.105 p 0.038 n 107
   Controlling for rating one year before the deal    +0.245 se 0.108 p 0.023 n 124
 

@@ -72,6 +72,8 @@ def review_flags(sc, terms, inputs):
     inp = inputs.copy(); inp["deal_date"] = pd.to_datetime(inp.deal_date)
     late_ids = set(inp[inp.apply(late, axis=1)].deal_id)
     reasons = add(sc.deal_id.isin(late_ids), "agency quotes all dated after the deal year")
+    noq = set(inp[inp.agency_quotes.fillna("").str.strip().str.len() < 25].deal_id)       # "none", "-" or blank
+    reasons = add(sc.deal_id.isin(noq) & sc.score.notna(), "scored without any quoted agency text")
     return (reasons != "").astype(int), reasons.str.rstrip("; ")
 
 
