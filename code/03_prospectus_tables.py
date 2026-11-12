@@ -124,12 +124,11 @@ print("\nFIGURE 1 data"); print(fd.to_string(index=False))
 
 # ------------------------------------------------------------------ Figure: every deal on the 0-1 scale, by deal date
 a["t"] = a.deal_date.dt.year + (a.deal_date.dt.dayofyear - 1) / 365
-LAB = [("J. Crew", 2017, 90, "J. Crew"), ("Mood Media", 2019, 90, "Mood Media"), ("Pinnacle Operating", 2020, 150, "Pinnacle (0.76)"), ("Revlon", 2020, 320, "Revlon (0.51)"),
-       ("Mister Car Wash", 2020, 270, "Mister Car Wash"), ("Rite Aid", 2022, 90, "Rite Aid"), ("WeWork", 2023, 270, "WeWork"), ("AMC Entertainment", 2024, 270, "AMC")]
+LAB = []        # (company, year, pin angle, text) for any deals to label; empty = all deals anonymous
 co = lambda d: " ".join(f"({t:.3f},{y:.3f})" for t, y in zip(d.t, d.score))
 ym = a.groupby("year").score.agg(["mean", "size"]); ym = ym[ym["size"] >= 15]
 F = [r"\begin{figure}[H]", r"\centering", r"\begin{tikzpicture}",
-     r"\begin{axis}[width=0.98\textwidth, height=6.4cm, xmin=2013.6, xmax=2026.2, ymin=-0.2, ymax=1.2,",
+     r"\begin{axis}[width=0.98\textwidth, height=5.6cm, xmin=2013.6, xmax=2026.2, ymin=-0.08, ymax=1.08,",
      r"  xtick={2014,2016,...,2026}, minor xtick={2015,2017,...,2025}, x tick label style={/pgf/number format/1000 sep=}, ytick={0,0.25,0.5,0.75,1},",
      r"  xlabel={Deal date}, ylabel={Structural score}, label style={font=\footnotesize}, ticklabel style={font=\footnotesize},",
      r"  ymajorgrids, grid style={gray!20}, axis lines*=left, clip=false,",
